@@ -17,6 +17,9 @@ public class TrapManager : MonoBehaviour
         // Initialize the grid system and conveyor belt
         gridSystem = FindObjectOfType<GridSystem>();
         //conveyor = GetComponent<ConveyorBeltSystem>(); // Reference to conveyor belt system
+
+        currentHighlight = Instantiate(highlightPrefab);
+        currentHighlight.SetActive(false);
     }
 
     void Update()
@@ -50,7 +53,8 @@ public class TrapManager : MonoBehaviour
                 // Check for existing traps at this position
                 // Use a small box size to check around the trap position
                 float checkSize = 0.5f; // Adjust this to match your trap size
-                Collider[] colliders = Physics.OverlapBox(trapPosition, new Vector3(checkSize, 0.1f, checkSize), Quaternion.identity);
+                int layerMask = ~LayerMask.GetMask("IgnorePlacement");
+                Collider[] colliders = Physics.OverlapBox(trapPosition, new Vector3(checkSize, 0.1f, checkSize), Quaternion.identity, layerMask);
 
                 // If no colliders are found, place the trap
                 if (colliders.Length == 0)
