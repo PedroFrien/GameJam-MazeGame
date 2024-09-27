@@ -9,6 +9,9 @@ public class TrapManager : MonoBehaviour
     //private ConveyorBeltSystem conveyor; // Reference to conveyor belt system
     public GameObject selectedTrap;     // The currently selected trap prefab
 
+    public GameObject highlightPrefab;
+    public GameObject currentHighlight;
+
     void Start()
     {
         // Initialize the grid system and conveyor belt
@@ -25,6 +28,8 @@ public class TrapManager : MonoBehaviour
 
         // Update selected trap from conveyor belt
         //selectedTrap = conveyor.GetSelectedTrap();
+
+        UpdateHighlight();
 
     }
 
@@ -57,6 +62,44 @@ public class TrapManager : MonoBehaviour
                     Debug.Log("Cannot place trap here, space is occupied.");
                 }
             }
+
+        }
+
+
+    }
+    private void UpdateHighlight()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            // Get grid position based on the mouse click
+            Vector2Int gridPos = gridSystem.GetGridPosition(hit.point);
+
+            // Check if within grid bounds
+            if (gridPos.x >= 0 && gridPos.x < gridSystem.width && gridPos.y >= 0 && gridPos.y < gridSystem.height)
+            {
+                // Get the size of the currently selected trap
+                Vector3 trapSize = selectedTrap.GetComponent<Renderer>().bounds.size;
+
+                // Calculate the top-left corner of the highlighted area
+                Vector3 highlightPosition = gridSystem.GetWorldPosition(gridPos.x, gridPos.y);
+                highlightPosition += new Vector3(trapSize.x / 2, 0.1f, trapSize.z / 2); // Adjust for size and height
+
+                // Move and scale the highlight object
+                currentHighlight.transform.position = highlightPosition;
+                currentHighlight.transform.localScale = new Vector3(trapSize.x, 1, trapSize.z); // Adjust size to fit the trap
+
+                currentHighlight.SetActive(true); // Activate the highlight
+            }
+            else
+            {
+                currentHighlight.SetActive(false); // Hide highlight when out of bounds
+            }
+        }
+        else
+        {
+            currentHighlight.SetActive(false); // Hide highlight when no valid grid position is hit
         }
     }
+    
 }
