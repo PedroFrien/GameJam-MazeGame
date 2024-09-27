@@ -50,6 +50,11 @@ public class TrapManager : MonoBehaviour
                 // Align to grid position
                 Vector3 trapPosition = gridSystem.GetWorldPosition(gridPos.x, gridPos.y);
 
+                float cellSize = gridSystem.cellSize;
+                Vector3 centerOffset = new Vector3(cellSize / 2, 0, cellSize / 2);
+
+                Vector3 centerPosition = trapPosition + centerOffset;
+
                 // Check for existing traps at this position
                 // Use a small box size to check around the trap position
                 float checkSize = 0.5f; // Adjust this to match your trap size
@@ -59,7 +64,7 @@ public class TrapManager : MonoBehaviour
                 // If no colliders are found, place the trap
                 if (colliders.Length == 0)
                 {
-                    Instantiate(selectedTrap, trapPosition, Quaternion.identity);
+                    Instantiate(selectedTrap, centerPosition, Quaternion.identity);
                 }
                 else
                 {
