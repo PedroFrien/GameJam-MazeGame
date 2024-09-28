@@ -59,7 +59,7 @@ public class TrapManager : MonoBehaviour
                 // Use a small box size to check around the trap position
                 float checkSize = 0.5f; // Adjust this to match your trap size
                 int layerMask = ~LayerMask.GetMask("IgnorePlacement");
-                Collider[] colliders = Physics.OverlapBox(trapPosition, new Vector3(checkSize, 0.1f, checkSize), Quaternion.identity, layerMask);
+                Collider[] colliders = Physics.OverlapBox(centerPosition, new Vector3(checkSize, 0.1f, checkSize), Quaternion.identity, layerMask);
 
                 // If no colliders are found, place the trap
                 if (colliders.Length == 0)
