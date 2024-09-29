@@ -17,12 +17,15 @@ public class NewTrapManager : MonoBehaviour
     public Trap[] newTraps;
     public GameObject[] traps;
     [SerializeField] private GameObject GridManager;
+    [SerializeField] private GameObject grid;
 
     [SerializeField] public string newSelectedTrap;
 
     [SerializeField] private GameObject nullTrap;
 
     private GameObject trapToPlace = null;
+
+    [SerializeField] private GameObject sampleText;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +48,8 @@ public class NewTrapManager : MonoBehaviour
     public void SelectTrap(string trapName)
     {
         trapToPlace = FindTrapByName(trapName);
-
+        sampleText.GetComponent<Text_SelectedTrap>().ChangeText(trapName);
+        grid.SetActive(true);
     }
     void Update()
     {
@@ -71,5 +75,6 @@ public class NewTrapManager : MonoBehaviour
     {
         Instantiate(trapToPlace, trapCoordinate, Quaternion.identity);
         trapToPlace = null;
+        sampleText.GetComponent<Text_SelectedTrap>().ChangeText("None");
     }
 }

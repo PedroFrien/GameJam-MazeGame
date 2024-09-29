@@ -11,6 +11,8 @@ public class Grid : MonoBehaviour
 
     [SerializeField] private float _gridSize;
 
+    [SerializeField] private GameObject grid;
+
     private void Start()
     {
         GenerateGrid();
@@ -30,7 +32,9 @@ public class Grid : MonoBehaviour
 
                 spawnedTile.transform.localScale = new Vector3(_gridSize, 0.1f, _gridSize);
                 spawnedTile.name = $"Tile {x} {z}";
+                spawnedTile.transform.SetParent(grid.transform);
             }
         }
+        grid.SetActive(false);
     }
 }
