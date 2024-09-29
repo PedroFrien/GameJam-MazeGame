@@ -22,7 +22,13 @@ public class Grid : MonoBehaviour
         {
             for (int z = 0; z < _height; z++)
             {
-                var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, 0, z), Quaternion.identity);
+                Vector3 spawnPosition = new Vector3(x * _gridSize, 0, z * _gridSize);
+
+                
+
+                var spawnedTile = Instantiate(_tilePrefab, spawnPosition, Quaternion.identity);
+
+                spawnedTile.transform.localScale = new Vector3(_gridSize, 0.1f, _gridSize);
                 spawnedTile.name = $"Tile {x} {z}";
             }
         }

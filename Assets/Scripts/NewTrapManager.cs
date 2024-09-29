@@ -4,19 +4,49 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.GameCenter;
 
+[System.Serializable]
+public struct Trap
+{
+    [SerializeField] public string name;
+    [SerializeField] public GameObject trapPrefab;
+    [SerializeField] public string gridSize;
+};
+
 public class NewTrapManager : MonoBehaviour
 {
+    public Trap[] newTraps;
     public GameObject[] traps;
     [SerializeField] private GameObject GridManager;
 
-    [SerializeField] private GameObject selectedTrap;
+    [SerializeField] public string newSelectedTrap;
+
+    [SerializeField] private GameObject nullTrap;
+
+    private GameObject trapToPlace = null;
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
+    GameObject FindTrapByName(string trapName)
+    {
+        foreach (Trap trap in newTraps)
+        {
+            if (trap.name == trapName)
+            {
+                return trap.trapPrefab;
+            }
+        }
+        return nullTrap;
+    }
     // Update is called once per frame
+
+    public void SelectTrap(string trapName)
+    {
+        trapToPlace = FindTrapByName(trapName);
+
+    }
     void Update()
     {
         
@@ -28,13 +58,18 @@ public class NewTrapManager : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Tile"))
             {
-                PlaceTrapAtPosition(hit.collider.transform.position);
+                if (trapToPlace != null)
+                {
+                    PlaceTrapAtPosition(hit.collider.transform.position, trapToPlace);
+                }
+                
             }
         }
     }
 
-    void PlaceTrapAtPosition(Vector3 trapCoordinate)
+    void PlaceTrapAtPosition(Vector3 trapCoordinate, GameObject trapToPlace)
     {
-        Instantiate(selectedTrap, trapCoordinate, Quaternion.identity);
+        Instantiate(trapToPlace, trapCoordinate, Quaternion.identity);
+        trapToPlace = null;
     }
 }
