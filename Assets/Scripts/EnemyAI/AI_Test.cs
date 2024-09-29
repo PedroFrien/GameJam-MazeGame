@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class AI_Walking : MonoBehaviour
+{
+    public NavMeshAgent agent;
+    public float reverseTime = 2f;
+    private bool isReversing = false;
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Checks for goal cube by searching it's name. Once found it sets that
+        //point as the destination
+        GameObject goal = GameObject.FindWithTag("Goal");
+
+        if (goal != null)
+        {
+            Transform goalTransform = goal.transform;
+            Vector3 goalPosition = goalTransform.position;
+            agent.SetDestination(goalPosition);
+
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //On collision with another object this checks to see if it has the Obstacle tag,
+        //if t does it executes the reverse direction routine which is what creates the bounce
+        if (other.CompareTag("Obstacle") && !isReversing)
+        {
+
+            StartCoroutine(ReverseDirection());
+        }
+
+    }
+
+    private IEnumerator ReverseDirection()
+    {
+        isReversing = true;
+
+        //grabs AI's velocity 
+        Vector3 currentVelocity = agent.velocity;
+
+        if (currentVelocity.magnitude > 0.1f)
+        {
+
+            Vector3 reverseDirection = -currentVelocity;
+
+            agent.isStopped = true;
+            agent.velocity = reverseDirection;
+
+        }
+
+        agent.isStopped = false;
+
+        yield return new WaitForSeconds(reverseTime);
+
+
+        isReversing = false;
+
+
+    }
+}

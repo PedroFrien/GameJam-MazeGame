@@ -7,6 +7,9 @@ TagManager:
   - Highlight
   - Tag
   - Tile
+  - Agent
+  - Obstacle
+  - Goal
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - IgnorePlacement
   - Water
   - UI
-  - 
+  - Goal
   - 
   - 
   - 
