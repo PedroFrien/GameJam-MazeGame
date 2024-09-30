@@ -18,6 +18,8 @@ public class NewTrapManager : MonoBehaviour
     public GameObject[] traps;
     [SerializeField] private GameObject GridManager;
     [SerializeField] private GameObject grid;
+    [SerializeField] private GameObject playerController;
+    [SerializeField] private GameObject trapCollection;
 
     [SerializeField] public string newSelectedTrap;
 
@@ -29,31 +31,41 @@ public class NewTrapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
-    GameObject FindTrapByName(string trapName)
+    Trap FindTrapByName(string trapName)
     {
         foreach (Trap trap in newTraps)
         {
             if (trap.name == trapName)
             {
-                return trap.trapPrefab;
+                return trap;
             }
         }
-        return nullTrap;
+        return newTraps[0];
     }
+
     // Update is called once per frame
 
     public void SelectTrap(string trapName)
     {
-        trapToPlace = FindTrapByName(trapName);
+        Trap currentTrapStruct = FindTrapByName(trapName);
+        trapToPlace = currentTrapStruct.trapPrefab;
         sampleText.GetComponent<Text_SelectedTrap>().ChangeText(trapName);
         grid.SetActive(true);
+        if (currentTrapStruct.gridSize == "1x1")
+        {
+            playerController.GetComponent<PlayerController>().SwitchDimensions("1x1");
+        }
+        if (currentTrapStruct.gridSize == "2x2")
+        {
+            playerController.GetComponent<PlayerController>().SwitchDimensions("2x2");
+        }
     }
     void Update()
     {
-        
+        Debug.Log(trapToPlace);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -71,10 +83,12 @@ public class NewTrapManager : MonoBehaviour
         }
     }
 
-    void PlaceTrapAtPosition(Vector3 trapCoordinate, GameObject trapToPlace)
+    void PlaceTrapAtPosition(Vector3 trapCoordinate, GameObject placingTrap)
     {
-        Instantiate(trapToPlace, trapCoordinate, Quaternion.identity);
+        var spawnedTrap = Instantiate(placingTrap, trapCoordinate, Quaternion.identity);
+        spawnedTrap.transform.SetParent(trapCollection.transform);
         trapToPlace = null;
         sampleText.GetComponent<Text_SelectedTrap>().ChangeText("None");
+        grid.SetActive(false);
     }
 }

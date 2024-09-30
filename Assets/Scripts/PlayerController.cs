@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public GameObject NewTrapManager;
 
     GameObject currentHoveredObject = null;
+    private GameObject currentTrap;
+    int dimension2 = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,5 +40,17 @@ public class PlayerController : MonoBehaviour
         }
 
 
+    }
+
+    public void SwitchDimensions(string dimensions)
+    {
+        if (dimensions == "1x1")
+        {
+            dimension2 = 1;
+        }
+        if (dimensions == "2x2")
+        {
+            dimension2 = 2;
+        }
     }
 }
