@@ -14,7 +14,7 @@ public class SpikeTrap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        damageVolume = transform.Find("DamageBox").gameObject;
     }
 
     // Update is called once per frame
@@ -27,22 +27,27 @@ public class SpikeTrap : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("TrapVictim"))
         {
-            //StartCoroutine(RaiseDamageVolume(raiseSpeed, lowerSpeed, raiseHeight, lowerDelay));
+            StartCoroutine(RaiseDamageVolume(raiseSpeed, lowerSpeed, raiseHeight, lowerDelay));
         }
     }
 
-    //private IEnumerator RaiseDamageVolume(float raiseSpeed, float lowerSpeed, float raiseHeight, float lowerDelay)
-    //{
-    //    while (damageVolume.transform.position.y < raiseHeight)
-    //    {
-    //        Vector3 newPosition = new Vector3(damageVolume.transform.position.x, damageVolume.transform.position.y, damageVolume.transform.position.z);
-    //        newPosition.y += raiseSpeed;
-    //    }
-    //    yield return new WaitForSeconds(lowerDelay);
-    //    while (damageVolume.transform.position.y > 0)
-    //    {
-    //        Vector3 newPosition = new Vector3(damageVolume.transform.position.x, damageVolume.transform.position.y, damageVolume.transform.position.z);
-    //        newPosition.y -= lowerSpeed;
-    //    }
-    //}
+    private IEnumerator RaiseDamageVolume(float raiseSpeed, float lowerSpeed, float raiseHeight, float lowerDelay)
+    {
+        Vector3 targetPosition = new Vector3(damageVolume.transform.position.x, damageVolume.transform.position.y + raiseHeight, damageVolume.transform.position.z);
+        Vector3 originalPosition = damageVolume.transform.position;
+        while (Vector3.Distance(damageVolume.transform.position, targetPosition) > 0.01f)
+        {
+            damageVolume.transform.position = Vector3.MoveTowards(damageVolume.transform.position, targetPosition, raiseSpeed * Time.deltaTime);
+            yield return null;
+        }
+        yield return new WaitForSeconds(lowerDelay);
+
+        while (Vector3.Distance(damageVolume.transform.position, originalPosition) > 0.01f)
+        {
+            damageVolume.transform.position = Vector3.MoveTowards(damageVolume.transform.position, originalPosition, lowerSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+
+    }
 }
