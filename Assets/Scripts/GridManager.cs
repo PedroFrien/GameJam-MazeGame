@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class Grid : MonoBehaviour
+public class GridManager : MonoBehaviour
 {
-    [SerializeField] private int _width, _height;
+    [SerializeField] public int _width, _height;
 
     [SerializeField] private GameObject _tilePrefab;
 

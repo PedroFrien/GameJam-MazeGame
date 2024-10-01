@@ -16,7 +16,7 @@ public class NewTrapManager : MonoBehaviour
 {
     public Trap[] newTraps;
     public GameObject[] traps;
-    [SerializeField] private GameObject GridManager;
+    [SerializeField] private GameObject gridManager;
     [SerializeField] private GameObject grid;
     [SerializeField] private GameObject playerController;
     [SerializeField] private GameObject trapCollection;
@@ -28,6 +28,9 @@ public class NewTrapManager : MonoBehaviour
     private GameObject trapToPlace = null;
 
     [SerializeField] private GameObject sampleText;
+    [SerializeField] private GameObject infiniteText;
+
+    [SerializeField] private bool infinite = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,14 +84,30 @@ public class NewTrapManager : MonoBehaviour
                 
             }
         }
+
+        if (Input.GetKeyDown("1"))
+        {
+            infinite = true;
+            infiniteText.GetComponent<Text_Infinite>().ChangeText("Infinite");
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            infiniteText.GetComponent<Text_Infinite>().ChangeText("Limited");
+            infinite = false;
+        }
     }
 
     void PlaceTrapAtPosition(Vector3 trapCoordinate, GameObject placingTrap)
     {
+        Vector3 offset = new Vector3(trapCoordinate.x, trapCoordinate.y += (placingTrap.transform.localScale.y / 2), trapCoordinate.z);
         var spawnedTrap = Instantiate(placingTrap, trapCoordinate, Quaternion.identity);
         spawnedTrap.transform.SetParent(trapCollection.transform);
-        trapToPlace = null;
-        sampleText.GetComponent<Text_SelectedTrap>().ChangeText("None");
-        grid.SetActive(false);
+        if (infinite == false)
+        {
+            trapToPlace = null;
+            sampleText.GetComponent<Text_SelectedTrap>().ChangeText("None");
+            grid.SetActive(false);
+        }
+       
     }
 }
