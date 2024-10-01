@@ -31,10 +31,12 @@ public class NewTrapManager : MonoBehaviour
     [SerializeField] private GameObject infiniteText;
 
     [SerializeField] private bool infinite = false;
+
+    private float gridSize;
     // Start is called before the first frame update
     void Start()
     {
-
+        gridSize = gridManager.GetComponent<GridManager>()._gridSize;
     }
 
     Trap FindTrapByName(string trapName)
@@ -101,7 +103,9 @@ public class NewTrapManager : MonoBehaviour
     {
         Vector3 offset = new Vector3(trapCoordinate.x, trapCoordinate.y += (placingTrap.transform.localScale.y / 2), trapCoordinate.z);
         var spawnedTrap = Instantiate(placingTrap, trapCoordinate, Quaternion.identity);
+        //spawnedTrap.transform.localScale = new Vector3(gridSize / 2, spawnedTrap.transform.localScale.y, gridSize / 2);
         spawnedTrap.transform.SetParent(trapCollection.transform);
+        
         if (infinite == false)
         {
             trapToPlace = null;

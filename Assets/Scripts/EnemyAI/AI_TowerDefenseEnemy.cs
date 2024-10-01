@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class AI_Walking : MonoBehaviour
+public class AI_TowerDefenseEnemy : MonoBehaviour
 {
     public NavMeshAgent agent;
     public float reverseTime = 2f;
     private bool isReversing = false;
 
+    public float health = 200;
     // Update is called once per frame
     void Update()
     {
@@ -22,6 +23,12 @@ public class AI_Walking : MonoBehaviour
             Vector3 goalPosition = goalTransform.position;
             agent.SetDestination(goalPosition);
 
+        }
+
+
+        if (health <= 0)
+        {
+            Die();
         }
     }
 
@@ -62,5 +69,15 @@ public class AI_Walking : MonoBehaviour
         isReversing = false;
 
 
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }

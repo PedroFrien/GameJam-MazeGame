@@ -11,6 +11,15 @@ public class PlayerController : MonoBehaviour
     GameObject currentHoveredObject = null;
     private GameObject currentTrap;
     int dimension2 = 1;
+
+    [SerializeField] private Camera cameraPosition1;
+    [SerializeField] private Camera cameraPosition2;
+
+    [SerializeField] private float cameraSpeed = 1f;
+    [SerializeField] private float moveThreshold = 0.1f;
+
+    private bool movementEnabled = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +49,17 @@ public class PlayerController : MonoBehaviour
         }
 
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            StartCoroutine(MoveCamera(cameraPosition1.transform, cameraSpeed));
+            Debug.Log("W");
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            StartCoroutine(MoveCamera(cameraPosition2.transform, cameraSpeed));
+            Debug.Log("S");
+        }
+
     }
 
     public void SwitchDimensions(string dimensions)
@@ -52,5 +72,27 @@ public class PlayerController : MonoBehaviour
         {
             dimension2 = 2;
         }
+    }
+
+    public IEnumerator MoveCamera(Transform targetPosition, float cameraSpeed)
+    {
+        Debug.Log("MoveCameraCalled");
+        if (!movementEnabled)
+            yield break;
+
+
+        movementEnabled = false;
+        Debug.Log("MovementEnabled was true");
+        while (Vector3.Distance(transform.position, targetPosition.position) > moveThreshold)
+        {
+            transform.position = Vector3.Lerp(transform.position, targetPosition.position, cameraSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetPosition.rotation, cameraSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        transform.position = targetPosition.position;
+        transform.rotation = targetPosition.rotation;
+
+        movementEnabled = true;
     }
 }

@@ -5,11 +5,11 @@ using UnityEngine.Tilemaps;
 
 public class GridManager : MonoBehaviour
 {
-    [SerializeField] public int _width, _height;
+    [SerializeField] private int _width, _height;
 
     [SerializeField] private GameObject _tilePrefab;
 
-    [SerializeField] private float _gridSize;
+    [SerializeField] public float _gridSize;
 
     [SerializeField] private GameObject grid;
 
