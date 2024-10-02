@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class AI_TowerDefenseEnemy : MonoBehaviour
 {
     public NavMeshAgent agent;
+    [SerializeField] private Slider healthBarSlider;
+
     public float reverseTime = 2f;
     private bool isReversing = false;
 
     public float health = 200;
+    public float maxHealth = 200;
     // Update is called once per frame
     void Update()
     {
@@ -74,6 +78,7 @@ public class AI_TowerDefenseEnemy : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        healthBarSlider.GetComponent<EnemyHealthbar>().UpdateHealth(health, maxHealth);
     }
 
     private void Die()
