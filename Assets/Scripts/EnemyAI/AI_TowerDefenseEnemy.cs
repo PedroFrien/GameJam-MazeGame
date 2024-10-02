@@ -8,12 +8,22 @@ public class AI_TowerDefenseEnemy : MonoBehaviour
 {
     public NavMeshAgent agent;
     [SerializeField] private Slider healthBarSlider;
+    [SerializeField] private GameObject towerDefenseEnemyManager;
 
     public float reverseTime = 2f;
     private bool isReversing = false;
 
     public float health = 200;
     public float maxHealth = 200;
+
+    private float speed;
+
+    private void Awake()
+    {
+        towerDefenseEnemyManager = FindObjectOfType<TowerDefenseEnemyManager>().gameObject;
+
+        speed = towerDefenseEnemyManager.GetComponent<TowerDefenseEnemyManager>().speed;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -77,6 +87,7 @@ public class AI_TowerDefenseEnemy : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
+        
         health -= damage;
         healthBarSlider.GetComponent<EnemyHealthbar>().UpdateHealth(health, maxHealth);
     }

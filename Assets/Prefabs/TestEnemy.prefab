@@ -147,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 3343049797596944781}
   healthBarSlider: {fileID: 7557370073459236685}
-  reverseTime: 1
+  reverseTime: 0.1
   health: 200
   maxHealth: 200
 --- !u!54 &3550800061591847139

@@ -95,4 +95,29 @@ public class PlayerController : MonoBehaviour
 
         movementEnabled = true;
     }
+
+
+
+    public void ThrowItem(GameObject itemPrefab, float shootForce)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            GameObject thrownCube = Instantiate(itemPrefab, Camera.main.transform.position, Quaternion.identity);
+
+            Vector3 direction = hit.point - Camera.main.transform.position;
+
+            Rigidbody cubeRigidbody = thrownCube.GetComponent<Rigidbody>();
+
+            if (cubeRigidbody != null)
+            {
+
+                cubeRigidbody.AddForce(direction.normalized * shootForce, ForceMode.Impulse);
+            }
+        }
+
+
+    }
 }
