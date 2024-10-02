@@ -1,25 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TowerDefenseEnemyManager : MonoBehaviour
 {
-    public float spawnRate;
+    public float spawnCooldown;
     public float speed;
-    [SerializeField] private float spawnRateIncrease;
+    [SerializeField] private float spawnCooldownDecrease;
     [SerializeField] private float speedIncrease;
-    [SerializeField] private float spawnRateTickRate;
+    [SerializeField] private float spawnCooldownTickRate;
     [SerializeField] private float speedTickRate;
-    [SerializeField] private float initialSpawnRateDelay;
+    [SerializeField] private float initialSpawnDelay;
     [SerializeField] private float initialSpeedDelay;
 
-    [SerializeField] private float baseSpeed;
+    [SerializeField] private GameObject[] enemySpawners;
+    [SerializeField] private GameObject towerDefenseEnemy;
+    
+
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(increaseSpeed(initialSpeedDelay, speedTickRate, speedIncrease));
-        StartCoroutine(increaseSpawnRate(initialSpawnRateDelay, spawnRateTickRate, spawnRateIncrease));
-        speed = baseSpeed;
+        StartCoroutine(increaseSpawnRate(initialSpawnDelay, spawnCooldownTickRate, spawnCooldownDecrease));
+
     }
 
     // Update is called once per frame
@@ -40,15 +44,34 @@ public class TowerDefenseEnemyManager : MonoBehaviour
         }
     }
 
-    public IEnumerator increaseSpawnRate(float initialDelay, float tickRate, float increase)
+    public IEnumerator increaseSpawnRate(float initialDelay, float tickRate, float decrease)
     {
         yield return new WaitForSeconds(initialDelay);
 
         while(true)
         {
-            spawnRate += increase;
+            ChooseRandomSpawner();
+            spawnCooldown -= decrease;
             yield return new WaitForSeconds(tickRate);
         }
 
+    }
+
+    
+    private void ChooseRandomSpawner()
+    {
+        if (enemySpawners.Length != 0)
+        {
+            int randomIndex = Random.Range(0, enemySpawners.Length);
+            GameObject selectedSpawner = enemySpawners[randomIndex];
+            SpawnEnemy(towerDefenseEnemy, selectedSpawner);
+
+        }
+    }
+
+    private void SpawnEnemy(GameObject enemy, GameObject spawner)
+    {
+        Transform spawnPoint = spawner.transform.GetChild(0);
+        Instantiate(enemy, spawnPoint.position, Quaternion.identity);
     }
 }

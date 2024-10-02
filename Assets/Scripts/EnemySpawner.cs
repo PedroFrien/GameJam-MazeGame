@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    private TowerDefenseEnemyManager enemyManager;
+    [SerializeField] private GameObject enemyManager;
+    [SerializeField] private GameObject enemyPrefab;
 
     private float spawnSpeed;
 
@@ -12,14 +13,28 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Debug.Log("Trying to spawn enemies");
+        StartCoroutine("SpawnEnemies");
     }
 
     // Update is called once per frame
     void Update()
     {
-        spawnSpeed = enemyManager.spawnRate;
+        
 
 
+    }
+
+    private IEnumerator SpawnEnemies()
+    {
+        Debug.Log("Couroutine Started");
+        while (true)
+        {
+            Debug.Log("atempted to Spawn Enemy");
+            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            yield return new WaitForSeconds(enemyManager.GetComponent<TowerDefenseEnemyManager>().spawnCooldown);
+        }
+
+        
     }
 }
