@@ -23,6 +23,7 @@ public class TowerDefenseEnemyManager : MonoBehaviour
     {
         StartCoroutine(increaseSpeed(initialSpeedDelay, speedTickRate, speedIncrease));
         StartCoroutine(increaseSpawnRate(initialSpawnDelay, spawnCooldownTickRate, spawnCooldownDecrease));
+        StartCoroutine(ChooseRandomSpawner());
 
     }
 
@@ -50,7 +51,6 @@ public class TowerDefenseEnemyManager : MonoBehaviour
 
         while(true)
         {
-            ChooseRandomSpawner();
             spawnCooldown -= decrease;
             yield return new WaitForSeconds(tickRate);
         }
@@ -58,14 +58,18 @@ public class TowerDefenseEnemyManager : MonoBehaviour
     }
 
     
-    private void ChooseRandomSpawner()
+    private IEnumerator ChooseRandomSpawner()
     {
         if (enemySpawners.Length != 0)
         {
-            int randomIndex = Random.Range(0, enemySpawners.Length);
-            GameObject selectedSpawner = enemySpawners[randomIndex];
-            SpawnEnemy(towerDefenseEnemy, selectedSpawner);
-
+            while(true)
+            {
+                int randomIndex = Random.Range(0, enemySpawners.Length);
+                GameObject selectedSpawner = enemySpawners[randomIndex];
+                SpawnEnemy(towerDefenseEnemy, selectedSpawner);
+                yield return new WaitForSeconds(spawnCooldown);
+            }
+            
         }
     }
 

@@ -85,6 +85,11 @@ public class NewTrapManager : MonoBehaviour
                 }
                 
             }
+
+            if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Figurine"))
+            {
+                PickUpTrap(hit.collider.gameObject);
+            }
         }
 
         if (Input.GetKeyDown("1"))
@@ -113,5 +118,18 @@ public class NewTrapManager : MonoBehaviour
             grid.SetActive(false);
         }
        
+    }
+
+    void PickUpTrap(GameObject figurine)
+    {
+        if (figurine.name == "SpikeTrapFigurine")
+        {
+            SelectTrap("SpikeTrap");
+        }
+        if (figurine.name == "TemporaryWallFigurine")
+        {
+            SelectTrap("TemporaryWall");
+        }
+        Destroy(figurine);
     }
 }
