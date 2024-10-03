@@ -106,9 +106,9 @@ public class NewTrapManager : MonoBehaviour
 
     void PlaceTrapAtPosition(Vector3 trapCoordinate, GameObject placingTrap)
     {
-        Vector3 offset = new Vector3(trapCoordinate.x, trapCoordinate.y += (placingTrap.transform.localScale.y / 2), trapCoordinate.z);
-        var spawnedTrap = Instantiate(placingTrap, trapCoordinate, Quaternion.identity);
-        //spawnedTrap.transform.localScale = new Vector3(gridSize / 2, spawnedTrap.transform.localScale.y, gridSize / 2);
+        Vector3 offset = new Vector3(trapCoordinate.x, trapCoordinate.y + (placingTrap.transform.localScale.y / 2), trapCoordinate.z);
+        var spawnedTrap = Instantiate(placingTrap, offset, Quaternion.identity);
+        spawnedTrap.transform.localScale = new Vector3(gridSize, spawnedTrap.transform.localScale.y, gridSize);
         spawnedTrap.transform.SetParent(trapCollection.transform);
         
         if (infinite == false)
