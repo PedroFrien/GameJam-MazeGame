@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     GameObject currentHoveredObject = null;
     private GameObject currentTrap;
-    int dimension2 = 1;
+    //int dimension2 = 1;
 
     [SerializeField] private Camera cameraPosition1;
     [SerializeField] private Camera cameraPosition2;
@@ -62,17 +62,17 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    public void SwitchDimensions(string dimensions)
-    {
-        if (dimensions == "1x1")
-        {
-            dimension2 = 1;
-        }
-        if (dimensions == "2x2")
-        {
-            dimension2 = 2;
-        }
-    }
+    //public void SwitchDimensions(string dimensions)
+    //{
+    //    if (dimensions == "1x1")
+    //    {
+    //        dimension2 = 1;
+    //    }
+    //    if (dimensions == "2x2")
+    //    {
+    //        dimension2 = 2;
+    //    }
+    //}
 
     public IEnumerator MoveCamera(Transform targetPosition, float cameraSpeed)
     {
@@ -98,26 +98,26 @@ public class PlayerController : MonoBehaviour
 
 
 
-    public void ThrowItem(GameObject itemPrefab, float shootForce)
-    {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
+    //public void ThrowItem(GameObject itemPrefab, float shootForce)
+    //{
+    //    Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+    //    RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
-        {
-            GameObject thrownCube = Instantiate(itemPrefab, Camera.main.transform.position, Quaternion.identity);
+    //    if (Physics.Raycast(ray, out hit))
+    //    {
+    //        GameObject thrownCube = Instantiate(itemPrefab, Camera.main.transform.position, Quaternion.identity);
 
-            Vector3 direction = hit.point - Camera.main.transform.position;
+    //        Vector3 direction = hit.point - Camera.main.transform.position;
 
-            Rigidbody cubeRigidbody = thrownCube.GetComponent<Rigidbody>();
+    //        Rigidbody cubeRigidbody = thrownCube.GetComponent<Rigidbody>();
 
-            if (cubeRigidbody != null)
-            {
+    //        if (cubeRigidbody != null)
+    //        {
 
-                cubeRigidbody.AddForce(direction.normalized * shootForce, ForceMode.Impulse);
-            }
-        }
+    //            cubeRigidbody.AddForce(direction.normalized * shootForce, ForceMode.Impulse);
+    //        }
+    //    }
 
 
-    }
+    //}
 }

@@ -12,6 +12,7 @@ TagManager:
   - Goal
   - Enemy
   - Figurine
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX

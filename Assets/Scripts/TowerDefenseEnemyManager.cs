@@ -20,10 +20,13 @@ public class TowerDefenseEnemyManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
+
     {
+        enemySpawners = GameObject.FindGameObjectsWithTag("EnemySpawner");
         StartCoroutine(increaseSpeed(initialSpeedDelay, speedTickRate, speedIncrease));
         StartCoroutine(increaseSpawnRate(initialSpawnDelay, spawnCooldownTickRate, spawnCooldownDecrease));
         StartCoroutine(ChooseRandomSpawner());
+
 
     }
 

@@ -13,7 +13,6 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Trying to spawn enemies");
         StartCoroutine("SpawnEnemies");
     }
 
@@ -27,11 +26,9 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator SpawnEnemies()
     {
-        Debug.Log("Couroutine Started");
         while (true)
         {
-            Debug.Log("atempted to Spawn Enemy");
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            Instantiate(enemyPrefab, transform.position + enemyPrefab.transform.position, Quaternion.identity);
             yield return new WaitForSeconds(enemyManager.GetComponent<TowerDefenseEnemyManager>().spawnCooldown);
         }
 

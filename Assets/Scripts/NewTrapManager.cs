@@ -59,14 +59,14 @@ public class NewTrapManager : MonoBehaviour
         trapToPlace = currentTrapStruct.trapPrefab;
         sampleText.GetComponent<Text_SelectedTrap>().ChangeText(trapName);
         grid.SetActive(true);
-        if (currentTrapStruct.gridSize == "1x1")
-        {
-            playerController.GetComponent<PlayerController>().SwitchDimensions("1x1");
-        }
-        if (currentTrapStruct.gridSize == "2x2")
-        {
-            playerController.GetComponent<PlayerController>().SwitchDimensions("2x2");
-        }
+        //if (currentTrapStruct.gridSize == "1x1")
+        //{
+        //    playerController.GetComponent<PlayerController>().SwitchDimensions("1x1");
+        //}
+        //if (currentTrapStruct.gridSize == "2x2")
+        //{
+        //    playerController.GetComponent<PlayerController>().SwitchDimensions("2x2");
+        //}
     }
     void Update()
     {
@@ -108,7 +108,7 @@ public class NewTrapManager : MonoBehaviour
     {
         Vector3 offset = new Vector3(trapCoordinate.x, trapCoordinate.y + (placingTrap.transform.localScale.y / 2), trapCoordinate.z);
         var spawnedTrap = Instantiate(placingTrap, offset, Quaternion.identity);
-        spawnedTrap.transform.localScale = new Vector3(gridSize, spawnedTrap.transform.localScale.y, gridSize);
+        //spawnedTrap.transform.localScale = new Vector3(gridSize, spawnedTrap.transform.localScale.y, gridSize);
         spawnedTrap.transform.SetParent(trapCollection.transform);
         
         if (infinite == false)
@@ -122,13 +122,18 @@ public class NewTrapManager : MonoBehaviour
 
     void PickUpTrap(GameObject figurine)
     {
-        if (figurine.name == "SpikeTrapFigurine")
+        Debug.Log("PickUpTrap Called");
+        if (figurine.name == "SpikeTrapFigurine(Clone)")
         {
             SelectTrap("SpikeTrap");
         }
-        if (figurine.name == "TemporaryWallFigurine")
+        if (figurine.name == "TemporaryWallFigurine(Clone)")
         {
             SelectTrap("TemporaryWall");
+        }
+        if (figurine.name == "HeaterTrapFigurine(Clone)")
+        {
+            SelectTrap("HeaterTrap");
         }
         Destroy(figurine);
     }

@@ -13,6 +13,8 @@ public class GridManager : MonoBehaviour
 
     [SerializeField] private GameObject grid;
 
+    
+
     private void Start()
     {
         GenerateGrid();
@@ -37,4 +39,24 @@ public class GridManager : MonoBehaviour
         }
         grid.SetActive(false);
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.green;
+
+    //    for (int x = 0; x <= _width; x++)
+    //    {
+    //        Vector3 start = new Vector3(-2.5f * _gridSize + x * _gridSize, 0, -2.5f * _gridSize);
+    //        Vector3 end = new Vector3(-2.5f * _gridSize + x * _gridSize, 0, (_height - 2.5f) * _gridSize);
+    //        Gizmos.DrawLine(start, end);
+    //    }
+
+    //    // Adjust the starting position for z-axis lines
+    //    for (int z = 0; z <= _height; z++)
+    //    {
+    //        Vector3 start = new Vector3(-2.5f * _gridSize, 0, -2.5f * _gridSize + z * _gridSize);
+    //        Vector3 end = new Vector3((_width - 2.5f) * _gridSize, 0, -2.5f * _gridSize + z * _gridSize);
+    //        Gizmos.DrawLine(start, end);
+    //    }
+    //}
 }

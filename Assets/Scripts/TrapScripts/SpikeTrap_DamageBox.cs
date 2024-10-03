@@ -20,7 +20,6 @@ public class SpikeTrap_DamageBox : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Object entered damageBox");
         if (other.gameObject.layer == LayerMask.NameToLayer("TrapVictim") && SpikeTrapMain.GetComponent<SpikeTrap>().onCooldown == false)
         {
             StartCoroutine(DealDamage(damage, other));
