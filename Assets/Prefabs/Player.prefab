@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4845762628331360883}
   - component: {fileID: 5184084799410494815}
   - component: {fileID: 2667900750554274049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 3367278371825165802}
   - component: {fileID: 6289586473621501179}
   - component: {fileID: 126829135905043018}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,6 +262,10 @@ PrefabInstance:
     - target: {fileID: 3619440719231689240, guid: e22c5ded89d64754ca390f94840ab21d, type: 3}
       propertyPath: m_Name
       value: FP Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 3619440719231689240, guid: e22c5ded89d64754ca390f94840ab21d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8829427407245808803, guid: e22c5ded89d64754ca390f94840ab21d, type: 3}
       propertyPath: playerBody

@@ -18,7 +18,7 @@ public class FPSController : MonoBehaviour
     float rotationX = 0;
 
     public bool canMove = true;
-
+    
     CharacterController characterController;
     // Start is called before the first frame update
     void Start()

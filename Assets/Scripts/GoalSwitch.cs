@@ -11,10 +11,18 @@ public class GoalSwitch : MonoBehaviour
     private GameObject[] enemiesOnField;
     private Camera activeCamera;
 
+    [SerializeField] private GameObject towerDefenseCameraRig;
+    [SerializeField] private GameObject firstPersonPlayerPrefab;
+
+    private GameObject[] spawnPoints;
+
     // Start is called before the first frame update
     void Start()
     {
         activeCamera = camera1;
+
+        
+
     }
 
     // Update is called once per frame
@@ -88,4 +96,6 @@ public class GoalSwitch : MonoBehaviour
             Destroy(obj);
         }
     }
+
+    
 }

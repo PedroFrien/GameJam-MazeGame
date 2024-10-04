@@ -28,12 +28,22 @@ public class TowerDefenseEnemyManager : MonoBehaviour
     void Start()
 
     {
+        Initialize();
+
+
+    }
+
+    private void OnEnable()
+    {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         enemySpawners = GameObject.FindGameObjectsWithTag("EnemySpawner");
         StartCoroutine(increaseSpeed(initialSpeedDelay, speedTickRate, speedIncrease));
         StartCoroutine(increaseSpawnRate(initialSpawnDelay, spawnCooldownTickRate, spawnCooldownDecrease));
         StartCoroutine(ChooseRandomSpawner());
-
-
     }
 
     // Update is called once per frame

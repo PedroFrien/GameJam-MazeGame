@@ -13,6 +13,7 @@ TagManager:
   - Enemy
   - Figurine
   - EnemySpawner
+  - GoalSwitchTest
   layers:
   - Default
   - TransparentFX
