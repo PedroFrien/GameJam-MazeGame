@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EnemyHealthbar : MonoBehaviour
 {
     [SerializeField] private Slider slider;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera mainCamera;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +16,8 @@ public class EnemyHealthbar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        camera = Camera.main;
-        transform.rotation = camera.transform.rotation;
+        mainCamera = Camera.main;
+        transform.rotation = mainCamera.transform.rotation;
     }
 
     public void UpdateHealth(float currentValue, float maxValue)

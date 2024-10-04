@@ -9,7 +9,7 @@ public class TowerDefenseEnemyManager : MonoBehaviour
     public float spawnCooldown;
     [SerializeField] private float spawnCooldownDecrease;
     [SerializeField] private float spawnCooldownTickRate;
-    [SerializeField] private float initialSpawnDelay;
+    [SerializeField] private float initialSpawnRateDelay;
     [SerializeField] private float minSpawnCooldown;
 
     [Header("Speed")]
@@ -18,6 +18,8 @@ public class TowerDefenseEnemyManager : MonoBehaviour
     [SerializeField] private float speedTickRate;    
     [SerializeField] private float initialSpeedDelay; 
     [SerializeField] private float maxSpeed;
+
+    [SerializeField] private float initialSpawnDelay;
 
 
     [SerializeField] private GameObject[] enemySpawners;
@@ -42,7 +44,7 @@ public class TowerDefenseEnemyManager : MonoBehaviour
     {
         enemySpawners = GameObject.FindGameObjectsWithTag("EnemySpawner");
         StartCoroutine(increaseSpeed(initialSpeedDelay, speedTickRate, speedIncrease));
-        StartCoroutine(increaseSpawnRate(initialSpawnDelay, spawnCooldownTickRate, spawnCooldownDecrease));
+        StartCoroutine(increaseSpawnRate(initialSpawnRateDelay, spawnCooldownTickRate, spawnCooldownDecrease));
         StartCoroutine(ChooseRandomSpawner());
     }
 
@@ -86,6 +88,7 @@ public class TowerDefenseEnemyManager : MonoBehaviour
         {
             while(true)
             {
+                yield return new WaitForSeconds(initialSpawnDelay);
                 int randomIndex = Random.Range(0, enemySpawners.Length);
                 GameObject selectedSpawner = enemySpawners[randomIndex];
                 SpawnEnemy(towerDefenseEnemy, selectedSpawner);

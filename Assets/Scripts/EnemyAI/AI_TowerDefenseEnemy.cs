@@ -16,7 +16,7 @@ public class AI_TowerDefenseEnemy : MonoBehaviour
     public float health = 200;
     public float maxHealth = 200;
 
-    private float speed;
+    public float speed;
 
     private void Awake()
     {
