@@ -11,7 +11,7 @@ public class Heater : MonoBehaviour
     [SerializeField] private GameObject damageVolume;
     [SerializeField] private Slider healthBarSlider;
 
-
+    [SerializeField] private bool isFiring;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +22,11 @@ public class Heater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemiesInTrigger())
+        if (isFiring)
         {
             durability -= 1;
             healthBarSlider.value = durability;
+            isFiring = enemiesInTrigger();
         }
         
         if (durability <= 0)
@@ -42,9 +43,10 @@ public class Heater : MonoBehaviour
         {
             other.gameObject.GetComponent<AI_TowerDefenseEnemy>().TakeDamage(damagePerTick);
         }
+        isFiring = true;
     }
 
-    
+
 
 
     private bool enemiesInTrigger()
