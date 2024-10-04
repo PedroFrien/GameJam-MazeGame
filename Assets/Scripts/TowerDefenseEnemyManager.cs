@@ -5,14 +5,20 @@ using UnityEngine;
 
 public class TowerDefenseEnemyManager : MonoBehaviour
 {
+    [Header("Spawn Rate")]
     public float spawnCooldown;
-    public float speed;
     [SerializeField] private float spawnCooldownDecrease;
-    [SerializeField] private float speedIncrease;
     [SerializeField] private float spawnCooldownTickRate;
-    [SerializeField] private float speedTickRate;
     [SerializeField] private float initialSpawnDelay;
-    [SerializeField] private float initialSpeedDelay;
+    [SerializeField] private float minSpawnCooldown;
+
+    [Header("Speed")]
+    public float speed;
+    [SerializeField] private float speedIncrease;
+    [SerializeField] private float speedTickRate;    
+    [SerializeField] private float initialSpeedDelay; 
+    [SerializeField] private float maxSpeed;
+
 
     [SerializeField] private GameObject[] enemySpawners;
     [SerializeField] private GameObject towerDefenseEnemy;
@@ -40,23 +46,26 @@ public class TowerDefenseEnemyManager : MonoBehaviour
     {
         yield return new WaitForSeconds(initialDelay);
 
-        while (true)
+        while (speed + increase <= maxSpeed)
         {
             speed += increase;
             yield return new WaitForSeconds(tickRate);
 
         }
+        speed = maxSpeed;
     }
 
     public IEnumerator increaseSpawnRate(float initialDelay, float tickRate, float decrease)
     {
         yield return new WaitForSeconds(initialDelay);
 
-        while(true)
+        while(spawnCooldown - decrease >= minSpawnCooldown)
         {
             spawnCooldown -= decrease;
             yield return new WaitForSeconds(tickRate);
         }
+
+        spawnCooldown = minSpawnCooldown;
 
     }
 

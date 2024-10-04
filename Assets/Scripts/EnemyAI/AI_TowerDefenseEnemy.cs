@@ -23,6 +23,8 @@ public class AI_TowerDefenseEnemy : MonoBehaviour
         towerDefenseEnemyManager = FindObjectOfType<TowerDefenseEnemyManager>().gameObject;
 
         speed = towerDefenseEnemyManager.GetComponent<TowerDefenseEnemyManager>().speed;
+
+        agent.speed = speed;
     }
     // Update is called once per frame
     void Update()

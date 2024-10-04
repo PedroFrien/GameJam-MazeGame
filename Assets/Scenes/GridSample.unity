@@ -1742,6 +1742,8 @@ MonoBehaviour:
   cameraPosition2: {fileID: 1757796094}
   cameraSpeed: 5
   moveThreshold: 1
+  cameraPanSpeed: 100
+  topDown: 0
 --- !u!4 &438849817
 Transform:
   m_ObjectHideFlags: 0
@@ -3746,13 +3748,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnCooldown: 10
-  speed: 3
   spawnCooldownDecrease: 0.1
-  speedIncrease: 1
-  spawnCooldownTickRate: 2
-  speedTickRate: 1
+  spawnCooldownTickRate: 5
   initialSpawnDelay: 1
+  minSpawnCooldown: 0.1
+  speed: 3
+  speedIncrease: 0.1
+  speedTickRate: 5
   initialSpeedDelay: 1
+  maxSpeed: 7
   enemySpawners:
   - {fileID: 0}
   - {fileID: 0}
@@ -11150,8 +11154,8 @@ Transform:
   m_GameObject: {fileID: 2138233022}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.210001, y: -14.199999, z: 2.1879997}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -3.19, y: -14.199999, z: 3.81}
+  m_LocalScale: {x: 1.6806, y: 1.6806, z: 1.6806}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1796481077}

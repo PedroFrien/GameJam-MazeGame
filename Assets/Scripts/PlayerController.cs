@@ -17,8 +17,10 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private float cameraSpeed = 1f;
     [SerializeField] private float moveThreshold = 0.1f;
+    [SerializeField] private float cameraPanSpeed;
 
     private bool movementEnabled = true;
+    [SerializeField] private bool topDown = false;
 
     // Start is called before the first frame update
     void Start()
@@ -48,16 +50,56 @@ public class PlayerController : MonoBehaviour
             
         }
 
+        Debug.Log(topDown);
 
-        if (Input.GetKeyDown(KeyCode.W))
+
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-            StartCoroutine(MoveCamera(cameraPosition1.transform, cameraSpeed));
-            Debug.Log("W");
+            if (!topDown)
+            {
+                StartCoroutine(MoveCamera(cameraPosition1.transform, cameraSpeed));
+                Debug.Log("setting topDown to True");
+                topDown = true;
+            }
+
+            else
+            {
+                StartCoroutine(MoveCamera(cameraPosition2.transform, cameraSpeed));
+                topDown = false;
+            }
         }
-        if (Input.GetKeyDown(KeyCode.S))
+
+
+
+        if (topDown)
         {
-            StartCoroutine(MoveCamera(cameraPosition2.transform, cameraSpeed));
-            Debug.Log("S");
+            if (Input.GetKey(KeyCode.W))
+            {
+                Debug.Log("W");
+                transform.Translate(0, cameraPanSpeed * Time.deltaTime, 0);
+                // positive Z
+            }
+
+            if (Input.GetKey(KeyCode.S))
+            {
+                Debug.Log("S");
+                transform.Translate(0, -cameraPanSpeed * Time.deltaTime, 0);
+                // negative Z
+            }
+
+            if (Input.GetKey(KeyCode.D))
+            {
+                Debug.Log("D");
+                transform.Translate(cameraPanSpeed * Time.deltaTime, 0, 0);
+                // positive X
+            }
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                Debug.Log("A");
+                transform.Translate(-cameraPanSpeed * Time.deltaTime, 0, 0);
+                // negative Z
+            }
         }
 
     }
