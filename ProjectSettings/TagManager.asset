@@ -14,6 +14,7 @@ TagManager:
   - Figurine
   - EnemySpawner
   - GoalSwitchTest
+  - GameManager
   layers:
   - Default
   - TransparentFX

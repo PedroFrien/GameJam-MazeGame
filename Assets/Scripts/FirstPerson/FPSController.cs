@@ -6,6 +6,8 @@ using UnityEngine;
 public class FPSController : MonoBehaviour
 {
     public Camera playerCamera;
+
+    [Header("Movement")]
     public float walkSpeed = 6f;
     public float runSpeed = 12f;
     public float jumpPower = 7f;
@@ -13,6 +15,8 @@ public class FPSController : MonoBehaviour
 
     public float lookSpeed = 2f;
     public float lookXLimit = 45f;
+
+    [SerializeField] private float health;
 
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -74,4 +78,20 @@ public class FPSController : MonoBehaviour
 
         }
     }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+
+    }
+
 }

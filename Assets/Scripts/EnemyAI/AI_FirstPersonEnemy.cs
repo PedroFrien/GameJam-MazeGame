@@ -7,12 +7,26 @@ public class AI_FirstPersonEnemy : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent agent;
 
     [SerializeField] private float health = 200;
+
+    private float speed;
+
+    private GameObject firstPersonEnemyManager;
+
+    private GameObject gameManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = GameObject.FindGameObjectWithTag("GameManager");
     }
 
+    void Awake()
+    {
+        firstPersonEnemyManager = FindObjectOfType<TowerDefenseEnemyManager>().gameObject;
+
+        speed = firstPersonEnemyManager.GetComponent<TowerDefenseEnemyManager>().speed;
+
+        agent.speed = speed;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -38,5 +52,13 @@ public class AI_FirstPersonEnemy : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            gameManager.GetComponent<GameManager>().Die();
+        }
     }
 }

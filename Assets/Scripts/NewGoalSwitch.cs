@@ -13,7 +13,9 @@ public class NewGoalSwitch : MonoBehaviour
 
     [SerializeField] private GameObject towerDefenseCameraRig;
 
-    [SerializeField] private GameObject TowerDefenseEnemyManager;
+    [SerializeField] private GameObject towerDefenseEnemyManager;
+
+    [SerializeField] private GameObject firstPersonEnemyManager;
 
     private GameObject[] enemies;
 
@@ -49,7 +51,11 @@ public class NewGoalSwitch : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("TrapVictim"))
+        if (other.gameObject.CompareTag("Agent") && (!firstPerson))
+        {
+            SwitchGoals();
+        }
+        if (other.gameObject.CompareTag("Player") && (firstPerson))
         {
             SwitchGoals();
         }
@@ -66,11 +72,14 @@ public class NewGoalSwitch : MonoBehaviour
 
     public void SwitchGoals()
     {
+
+        CleanEnemies();
+
         if (!firstPerson)
         {
-            CleanEnemies();
+            
 
-            TowerDefenseEnemyManager.gameObject.SetActive(false);
+            towerDefenseEnemyManager.gameObject.SetActive(false);
 
             GameObject spawnPoint = FindSpawnPoint();
 
@@ -80,6 +89,8 @@ public class NewGoalSwitch : MonoBehaviour
             Camera playerCamera = player.transform.Find("FP Camera").GetComponent<Camera>();
 
             towerDefenseCameraRig.gameObject.SetActive(false);
+            firstPersonEnemyManager.gameObject.SetActive(true);
+
             playerCamera.enabled = true;
 
             firstPerson = true;
@@ -87,13 +98,12 @@ public class NewGoalSwitch : MonoBehaviour
 
         else
         {
-            CleanEnemies();
-
-            TowerDefenseEnemyManager.gameObject.SetActive(true);
+            towerDefenseEnemyManager.gameObject.SetActive(true);
 
             Destroy(player);
 
             towerDefenseCameraRig.gameObject.SetActive(true);
+            firstPersonEnemyManager.gameObject.SetActive(false);
 
             firstPerson = false;
 

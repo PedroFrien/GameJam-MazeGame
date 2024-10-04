@@ -41,7 +41,16 @@ public class Heater : MonoBehaviour
         healthBarSlider.gameObject.SetActive(true);
         if (other.gameObject.layer == LayerMask.NameToLayer("TrapVictim"))
         {
-            other.gameObject.GetComponent<AI_TowerDefenseEnemy>().TakeDamage(damagePerTick);
+            if (other.gameObject.GetComponent<AI_TowerDefenseEnemy>() != null)
+            {
+                other.gameObject.GetComponent<AI_TowerDefenseEnemy>().TakeDamage(damagePerTick);
+            }
+            if (other.gameObject.GetComponent<FPSController>() != null)
+            {
+                other.gameObject.GetComponent<FPSController>().TakeDamage(damagePerTick);
+            }
+
+
         }
         isFiring = true;
     }
