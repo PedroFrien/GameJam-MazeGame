@@ -19,6 +19,12 @@ public class NewGoalSwitch : MonoBehaviour
 
     [SerializeField] private GameObject gameTimer;
 
+    [SerializeField] private GameObject newTrapManager;
+
+    [SerializeField] private GameObject trapSpawner;
+
+    [SerializeField] private GameObject grid;
+
     private GameObject[] enemies;
 
     private GameObject player;
@@ -97,6 +103,12 @@ public class NewGoalSwitch : MonoBehaviour
             playerCamera.enabled = true;
 
             firstPerson = true;
+
+            newTrapManager.gameObject.SetActive(false);
+
+            trapSpawner.gameObject.SetActive(false);
+
+            grid.gameObject.SetActive(false);
         }
 
         else
@@ -110,6 +122,10 @@ public class NewGoalSwitch : MonoBehaviour
             gameTimer.SetActive(true);
 
             firstPerson = false;
+
+            newTrapManager.gameObject.SetActive(true);
+
+            trapSpawner.gameObject.SetActive(true);
 
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

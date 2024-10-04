@@ -135,6 +135,10 @@ public class NewTrapManager : MonoBehaviour
         {
             SelectTrap("HeaterTrap");
         }
+        if (figurine.name == "HourglassFigurine(Clone)")
+        {
+            SelectTrap("Hourglass");
+        }
         Destroy(figurine);
     }
 }

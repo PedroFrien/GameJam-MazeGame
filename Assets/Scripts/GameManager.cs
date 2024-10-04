@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         gameOverScreen.SetActive(false);
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame

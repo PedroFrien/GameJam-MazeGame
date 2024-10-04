@@ -2307,7 +2307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &556794395
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2505,7 +2505,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1508839903}
   - {fileID: 1670092696}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7136,6 +7135,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1508839903}
   - {fileID: 1796481077}
   - {fileID: 438849817}
   - {fileID: 1073030149}
@@ -7874,12 +7874,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508839901}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.31988907, y: 11.108195, z: -9.308281}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 588918052}
+  m_Father: {fileID: 1344741193}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1530099787
 PrefabInstance:
@@ -8129,6 +8129,9 @@ MonoBehaviour:
   towerDefenseEnemyManager: {fileID: 1050631351}
   firstPersonEnemyManager: {fileID: 433739258}
   gameTimer: {fileID: 106387225}
+  newTrapManager: {fileID: 1508839901}
+  trapSpawner: {fileID: 1796481076}
+  grid: {fileID: 594085645}
   spawnOffset: 1
 --- !u!1 &1557348636
 GameObject:

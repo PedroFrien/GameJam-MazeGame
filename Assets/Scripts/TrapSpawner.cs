@@ -8,7 +8,7 @@ public class TrapSpawner : MonoBehaviour
     [SerializeField] private float startCoolDownRange;
     [SerializeField] private float endCoolDownRange;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         StartCoroutine(spawnTraps());
     }
