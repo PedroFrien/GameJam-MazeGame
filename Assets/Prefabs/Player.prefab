@@ -55,6 +55,7 @@ MonoBehaviour:
   gravity: 10
   lookSpeed: 4
   lookXLimit: 45
+  health: 0
   canMove: 1
 --- !u!143 &5184084799410494815
 CharacterController:

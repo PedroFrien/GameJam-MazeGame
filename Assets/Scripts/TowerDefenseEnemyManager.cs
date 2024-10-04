@@ -7,18 +7,23 @@ public class TowerDefenseEnemyManager : MonoBehaviour
 {
     [Header("Spawn Rate")]
     public float spawnCooldown;
+    [SerializeField] private float startingSpawnCooldown;
     [SerializeField] private float spawnCooldownDecrease;
     [SerializeField] private float spawnCooldownTickRate;
     [SerializeField] private float initialSpawnRateDelay;
     [SerializeField] private float minSpawnCooldown;
+    [SerializeField] private float permSpawnCooldownDecrease;
 
     [Header("Speed")]
     public float speed;
+    [SerializeField] private float startingSpeed;
     [SerializeField] private float speedIncrease;
     [SerializeField] private float speedTickRate;    
     [SerializeField] private float initialSpeedDelay; 
     [SerializeField] private float maxSpeed;
+    [SerializeField] private float permSpeedIncrease;
 
+    [Header("Spawn Delay")]
     [SerializeField] private float initialSpawnDelay;
 
 
@@ -30,15 +35,34 @@ public class TowerDefenseEnemyManager : MonoBehaviour
     void Start()
 
     {
+        spawnCooldown = startingSpawnCooldown;
+        speed = startingSpeed;
         Initialize();
-
 
     }
 
     private void OnEnable()
     {
         Initialize();
+
+        
     }
+
+    private void OnDisable()
+    {
+        if (startingSpeed + permSpeedIncrease <= maxSpeed)
+        {
+            startingSpeed += permSpeedIncrease;
+            speed = startingSpeed;
+        }
+
+        if (startingSpawnCooldown - permSpawnCooldownDecrease >= minSpawnCooldown)
+        {
+            startingSpawnCooldown -= permSpawnCooldownDecrease;
+            spawnCooldown = startingSpawnCooldown;
+        }
+    }
+
 
     private void Initialize()
     {

@@ -17,6 +17,8 @@ public class NewGoalSwitch : MonoBehaviour
 
     [SerializeField] private GameObject firstPersonEnemyManager;
 
+    [SerializeField] private GameObject gameTimer;
+
     private GameObject[] enemies;
 
     private GameObject player;
@@ -90,6 +92,7 @@ public class NewGoalSwitch : MonoBehaviour
 
             towerDefenseCameraRig.gameObject.SetActive(false);
             firstPersonEnemyManager.gameObject.SetActive(true);
+            gameTimer.SetActive(false);
 
             playerCamera.enabled = true;
 
@@ -104,6 +107,7 @@ public class NewGoalSwitch : MonoBehaviour
 
             towerDefenseCameraRig.gameObject.SetActive(true);
             firstPersonEnemyManager.gameObject.SetActive(false);
+            gameTimer.SetActive(true);
 
             firstPerson = false;
 
