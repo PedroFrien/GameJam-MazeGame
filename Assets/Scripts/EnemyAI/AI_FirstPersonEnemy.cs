@@ -34,7 +34,7 @@ public class AI_FirstPersonEnemy : MonoBehaviour
     {
         //Checks for goal cube by searching it's name. Once found it sets that
         //point as the destination
-        GameObject goal = GameObject.FindWithTag("Player");
+        goal = GameObject.FindWithTag("Player");
 
         if (goal != null)
         {
@@ -75,13 +75,11 @@ public class AI_FirstPersonEnemy : MonoBehaviour
 
     private bool SeesPlayer()
     {
-        Debug.Log("You are being watched...");
+        Vector3 directionToTarget = goal.transform.position - transform.position;
 
-        Vector3 directionToTarget = (goal.transform.position - transform.position).normalized;
-
-        if (Physics.Raycast(transform.position, directionToTarget, out RaycastHit hit))
+        if (Physics.Raycast(transform.position, directionToTarget.normalized, out RaycastHit hit, 100))
         {
-            return hit.transform == goal;
+            return hit.transform == goal.transform;
         }
 
         return true;

@@ -4,12 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameTimer;
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject player;
+
+    [SerializeField] private GameObject jumpscareScreen;
+    [SerializeField] private GameObject jumpscarePlayer;
 
     [SerializeField] private TMP_Text gameOverTime;
 
@@ -33,13 +37,34 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Dead");
 
+        
+
+        StartCoroutine(JumpScare());
+        
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private IEnumerator JumpScare()
+    {
+        jumpscarePlayer.SetActive(true);
+        jumpscareScreen.SetActive(true);
+
+        yield return new WaitForSeconds(3);
+
+        Destroy(jumpscarePlayer);
+        Destroy(jumpscareScreen);
+
         Time.timeScale = 0;
 
         gameOverScreen.SetActive(true);
 
         survivalTime = gameTimer.GetComponent<GameTimer>().time;
 
-        gameOverTime.text = $"{ survivalTime.ToString("F0")} seconds.";
+        gameOverTime.text = $"{survivalTime.ToString("F0")} seconds.";
 
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -48,10 +73,7 @@ public class GameManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-    }
 
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        FindObjectOfType<AudioManager>().PlaySound("PrestonHourglass");
     }
 }
