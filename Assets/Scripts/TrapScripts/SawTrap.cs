@@ -98,8 +98,11 @@ public class SawTrap : MonoBehaviour
 
             yield return new WaitForSeconds(slowDuration);
 
-            target.GetComponent<AI_TowerDefenseEnemy>().speed = target.GetComponent<AI_TowerDefenseEnemy>().speed * 2;
-            target.GetComponent<AI_TowerDefenseEnemy>().slowed = false;
+            if (target.gameObject != null)
+            {
+                target.GetComponent<AI_TowerDefenseEnemy>().speed = target.GetComponent<AI_TowerDefenseEnemy>().speed * 2;
+                target.GetComponent<AI_TowerDefenseEnemy>().slowed = false;
+            }
         }
     }
     private bool enemiesInTrigger()

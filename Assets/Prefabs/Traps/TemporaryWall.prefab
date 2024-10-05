@@ -490,7 +490,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 58c4759e3a77e484d81e82f099752bc5, type: 2}
+  - {fileID: 2100000, guid: 8f0397363c293f6499a85d9fb5d5ae6b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -547,6 +547,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeSpan: 15
   healthBarSlider: {fileID: 8367365875397198621}
+  objectRenderer: {fileID: 2893069922051147556}
+  sprite1: {fileID: 2100000, guid: 8f0397363c293f6499a85d9fb5d5ae6b, type: 2}
+  sprite2: {fileID: 2100000, guid: 1ebe4aeba52b4e648b8a255ef3bbce20, type: 2}
+  sprite3: {fileID: 2100000, guid: b7319b9b7fdb4b44f8f38fd845140390, type: 2}
 --- !u!114 &-8765631427345559414
 MonoBehaviour:
   m_ObjectHideFlags: 0
