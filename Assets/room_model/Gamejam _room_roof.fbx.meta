@@ -1,9 +1,29 @@
 fileFormatVersion: 2
-guid: 2e0b158894843364e94f8a386f57e030
+guid: 8e66199e89a23204099f581c92afec23
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: gamejam_roof
+    second: {fileID: 2800000, guid: 9a9e5e2fc586010458711de6bc54e9e4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: room_floor_sprite
+    second: {fileID: 2800000, guid: 4be814e287f02cb46917716fc0700ca6, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: room_wall_sprite
+    second: {fileID: 2800000, guid: 5a00d44a292b49a4587e36883168a922, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: table_sprite
+    second: {fileID: 2800000, guid: 4d715d8c8726a134c8780802205defdb, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +55,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 10
+    globalScale: 25
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -90,7 +110,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.099999994
+    globalScale: 0.25
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
