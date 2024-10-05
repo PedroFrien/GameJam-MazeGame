@@ -9,7 +9,7 @@ public struct Trap
 {
     [SerializeField] public string name;
     [SerializeField] public GameObject trapPrefab;
-    [SerializeField] public string gridSize;
+    [SerializeField] public Vector3 offset;
 };
 
 public class NewTrapManager : MonoBehaviour
@@ -31,6 +31,8 @@ public class NewTrapManager : MonoBehaviour
     [SerializeField] private GameObject infiniteText;
 
     [SerializeField] private bool infinite = false;
+
+    private Trap currentTrapStruct;
 
     private float gridSize;
     // Start is called before the first frame update
@@ -55,8 +57,9 @@ public class NewTrapManager : MonoBehaviour
 
     public void SelectTrap(string trapName)
     {
-        Trap currentTrapStruct = FindTrapByName(trapName);
+        currentTrapStruct = FindTrapByName(trapName);
         trapToPlace = currentTrapStruct.trapPrefab;
+
         sampleText.GetComponent<Text_SelectedTrap>().ChangeText(trapName);
         grid.SetActive(true);
         //if (currentTrapStruct.gridSize == "1x1")
@@ -106,7 +109,7 @@ public class NewTrapManager : MonoBehaviour
 
     void PlaceTrapAtPosition(Vector3 trapCoordinate, GameObject placingTrap)
     {
-        Vector3 offset = new Vector3(trapCoordinate.x, trapCoordinate.y + (placingTrap.transform.localScale.y / 2), trapCoordinate.z);
+        Vector3 offset = new Vector3(trapCoordinate.x + currentTrapStruct.offset.x, trapCoordinate.y + (placingTrap.transform.localScale.y / 2 + currentTrapStruct.offset.y), trapCoordinate.z + currentTrapStruct.offset.z);
         var spawnedTrap = Instantiate(placingTrap, offset, Quaternion.identity);
         //spawnedTrap.transform.localScale = new Vector3(gridSize, spawnedTrap.transform.localScale.y, gridSize);
         spawnedTrap.transform.SetParent(trapCollection.transform);
