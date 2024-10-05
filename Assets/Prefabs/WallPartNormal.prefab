@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5530381689296422729}
   - component: {fileID: 7654531899896931412}
   m_Layer: 0
-  m_Name: NewWallPart
+  m_Name: WallPartNormal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -304,7 +304,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 16af31ebccf19464f866d6759810093d, type: 2}
+  - {fileID: 2100000, guid: 78db0a86ad7d0bb49bb8ea4dce71affa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
