@@ -55,7 +55,7 @@ public class Hourglass : MonoBehaviour
         yield return new WaitForSeconds(deathTime);
         foreach (var enemy in enemies)
         {
-            if (enemy != null)
+            if (enemy != null && enemy.gameObject.GetComponent<AI_TowerDefenseEnemy>() != null)
             {
                 enemy.gameObject.GetComponent<AI_TowerDefenseEnemy>().enabled = true;
                 enemy.gameObject.GetComponent<NavMeshAgent>().isStopped = false;
