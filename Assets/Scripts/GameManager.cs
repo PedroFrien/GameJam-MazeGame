@@ -33,13 +33,13 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void Die()
+    public void Die(bool enemyKill)
     {
         Debug.Log("Dead");
 
         
 
-        StartCoroutine(JumpScare());
+        StartCoroutine(JumpScare(enemyKill));
         
     }
 
@@ -48,16 +48,20 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private IEnumerator JumpScare()
+    private IEnumerator JumpScare(bool enemyKill)
     {
-        jumpscarePlayer.SetActive(true);
-        jumpscareScreen.SetActive(true);
-        FindObjectOfType<AudioManager>().PlaySound("PrestonHourglass", player.transform.position);
+        if (enemyKill)
+        {
+            jumpscarePlayer.SetActive(true);
+            jumpscareScreen.SetActive(true);
+            FindObjectOfType<AudioManager>().PlaySound("PrestonHourglass", player.transform.position);
 
-        yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(3);
 
-        Destroy(jumpscarePlayer);
-        Destroy(jumpscareScreen);
+            Destroy(jumpscarePlayer);
+            Destroy(jumpscareScreen);
+        }
+        
 
         Time.timeScale = 0;
 

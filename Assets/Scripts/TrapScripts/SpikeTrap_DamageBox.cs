@@ -28,7 +28,18 @@ public class SpikeTrap_DamageBox : MonoBehaviour
 
     private IEnumerator DealDamage(float damage, Collider entity)
     {
-        entity.GetComponent<AI_TowerDefenseEnemy>().TakeDamage(damage);
+        if (entity.GetComponent<AI_TowerDefenseEnemy>() != null)
+        {
+            entity.GetComponent<AI_TowerDefenseEnemy>().TakeDamage(damage);
+        }
+        if (entity.GetComponent<FPSController>() != null)
+        {
+            entity.GetComponent<FPSController>().TakeDamage(damage);
+        }
+        if (entity.GetComponent<AI_FirstPersonEnemy>() != null)
+        {
+            entity.GetComponent<AI_FirstPersonEnemy>().TakeDamage(damage);
+        }
         yield return new WaitForSeconds((float)0.05);
         SpikeTrapMain.GetComponent<SpikeTrap>().StartCoolDown();
     }

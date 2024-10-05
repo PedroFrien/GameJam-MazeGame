@@ -9,12 +9,15 @@ public class AI_FirstPersonEnemy : MonoBehaviour
     [SerializeField] private float health = 200;
     [SerializeField] private float chaseSpeed;
 
+
     private float speed;
 
     private GameObject firstPersonEnemyManager;
 
     private GameObject gameManager;
     private GameObject goal;
+
+    public bool slowed = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +31,7 @@ public class AI_FirstPersonEnemy : MonoBehaviour
         speed = firstPersonEnemyManager.GetComponent<TowerDefenseEnemyManager>().speed;
 
         agent.speed = speed;
+
     }
     // Update is called once per frame
     void Update()
@@ -45,10 +49,7 @@ public class AI_FirstPersonEnemy : MonoBehaviour
         }
 
 
-        if (health <= 0)
-        {
-            Die();
-        }
+        
 
         if (SeesPlayer())
         {
@@ -69,7 +70,7 @@ public class AI_FirstPersonEnemy : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            gameManager.GetComponent<GameManager>().Die();
+            gameManager.GetComponent<GameManager>().Die(true);
         }
     }
 
@@ -85,5 +86,16 @@ public class AI_FirstPersonEnemy : MonoBehaviour
         return true;
 
         
+    }
+
+    public void TakeDamage(float damage)
+    {
+
+
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 }

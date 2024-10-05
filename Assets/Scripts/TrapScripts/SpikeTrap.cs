@@ -50,6 +50,7 @@ public class SpikeTrap : MonoBehaviour
             }
             StartCoroutine(RaiseDamageVolume(raiseSpeed, lowerSpeed, raiseHeight, lowerDelay, raiseDelay));
             durabilityCoolDown = true;
+            
         }
     }
 
@@ -64,6 +65,7 @@ public class SpikeTrap : MonoBehaviour
             damageVolume.transform.position = Vector3.MoveTowards(damageVolume.transform.position, targetPosition, raiseSpeed * Time.deltaTime);
             yield return null;
         }
+        onCooldown = true;
         yield return new WaitForSeconds(lowerDelay);
 
         while (Vector3.Distance(damageVolume.transform.position, originalPosition) > 0.01f)

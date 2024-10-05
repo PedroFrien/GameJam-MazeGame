@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 public class FPSController : MonoBehaviour
@@ -22,14 +23,25 @@ public class FPSController : MonoBehaviour
     float rotationX = 0;
 
     public bool canMove = true;
+
+    public bool slowed;
+
+    [SerializeField] private Slider healthBarSlider;
     
     CharacterController characterController;
+
+
     // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        healthBarSlider.maxValue = health;
+        healthBarSlider.value = health;
+
     }
 
     // Update is called once per frame
@@ -83,6 +95,7 @@ public class FPSController : MonoBehaviour
     {
         health -= damage;
 
+        healthBarSlider.value = health;
         if (health <= 0)
         {
             Die();
@@ -91,7 +104,8 @@ public class FPSController : MonoBehaviour
 
     private void Die()
     {
-
+        healthBarSlider.gameObject.SetActive(false);
+        FindObjectOfType<GameManager>().Die(false);
     }
 
 }

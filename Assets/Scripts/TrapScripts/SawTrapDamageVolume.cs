@@ -40,7 +40,15 @@ public class SawTrapDamageVolume : MonoBehaviour
             if (other.gameObject.GetComponent<FPSController>() != null)
             {
                 other.gameObject.GetComponent<FPSController>().TakeDamage(damagePerTick);
+                StartCoroutine(ApplyBleed(other.gameObject, bleedProc, bleedDamage));
             }
+
+            if (other.gameObject.GetComponent<AI_FirstPersonEnemy>() != null)
+            {
+                other.gameObject.GetComponent<AI_FirstPersonEnemy>().TakeDamage(damagePerTick);
+                StartCoroutine(ApplyBleed(other.gameObject, bleedProc, bleedDamage));
+            }
+
         }
     }
 
@@ -48,13 +56,27 @@ public class SawTrapDamageVolume : MonoBehaviour
 
     private IEnumerator ApplyBleed(GameObject target, float bleedProc, float bleedDamage)
     {
-        if (target.GetComponent <AI_TowerDefenseEnemy>() != null)
+        if (target.GetComponent<AI_TowerDefenseEnemy>() != null || target.GetComponent<FPSController>() != null || target.GetComponent<AI_FirstPersonEnemy>() != null)
         {
             Debug.Log("Applying Bleed");
             yield return new WaitForSeconds(bleedProc);
             if (target != null )
             {
-                target.GetComponent<AI_TowerDefenseEnemy>().TakeDamage(bleedDamage);
+                if (target.GetComponent<AI_TowerDefenseEnemy>() != null)
+                {
+                    target.GetComponent<AI_TowerDefenseEnemy>().TakeDamage(bleedDamage);
+                }
+
+                if (target.GetComponent<FPSController>() != null)
+                {
+                    target.GetComponent<FPSController>().TakeDamage(bleedDamage);
+                }
+
+                if (target.GetComponent<AI_FirstPersonEnemy>() != null)
+                {
+                    target.GetComponent<AI_FirstPersonEnemy>().TakeDamage(bleedDamage);
+                }
+                
             }
             
         }

@@ -367,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc301dbdc23daab42ac1ea65096d100b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageVolume: {fileID: 0}
+  damageVolume: {fileID: 6137646101822463965}
   healthBarSlider: {fileID: 2124089925662980134}
   raiseSpeed: 4
   lowerSpeed: 1

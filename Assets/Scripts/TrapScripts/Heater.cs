@@ -65,6 +65,10 @@ public class Heater : MonoBehaviour
             {
                 other.gameObject.GetComponent<FPSController>().TakeDamage(damagePerTick);
             }
+            if (other.gameObject.GetComponent<AI_FirstPersonEnemy>() != null)
+            {
+                other.gameObject.GetComponent<AI_FirstPersonEnemy>().TakeDamage(damagePerTick);
+            }
 
 
         }
