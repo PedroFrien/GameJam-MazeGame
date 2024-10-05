@@ -12,11 +12,20 @@ public class Heater : MonoBehaviour
     [SerializeField] private Slider healthBarSlider;
 
     [SerializeField] private bool isFiring;
+
+    [SerializeField] private Light areaLight;
+
+    private float areaLightIntensity;
+    private float areaLightStartingIntensity;
+
+    [SerializeField] private float areaLight_IntensityIncrease;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         healthBarSlider.maxValue = durability;
         healthBarSlider.value = durability;
+
+        areaLightStartingIntensity = areaLight.intensity;
     }
 
     // Update is called once per frame
@@ -27,6 +36,13 @@ public class Heater : MonoBehaviour
             durability -= 1;
             healthBarSlider.value = durability;
             isFiring = enemiesInTrigger();
+
+            areaLight.intensity += areaLight_IntensityIncrease;
+        }
+
+        if (!isFiring)
+        {
+            areaLight.intensity = areaLightStartingIntensity;
         }
         
         if (durability <= 0)
