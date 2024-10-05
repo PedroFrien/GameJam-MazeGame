@@ -52,7 +52,11 @@ public class SawTrapDamageVolume : MonoBehaviour
         {
             Debug.Log("Applying Bleed");
             yield return new WaitForSeconds(bleedProc);
-            target.GetComponent<AI_TowerDefenseEnemy>().TakeDamage(bleedDamage);
+            if (target != null )
+            {
+                target.GetComponent<AI_TowerDefenseEnemy>().TakeDamage(bleedDamage);
+            }
+            
         }
     }
 }

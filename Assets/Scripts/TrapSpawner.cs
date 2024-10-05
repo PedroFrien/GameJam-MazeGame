@@ -7,6 +7,7 @@ public class TrapSpawner : MonoBehaviour
     [SerializeField] private GameObject[] trapFigurines;
     [SerializeField] private float startCoolDownRange;
     [SerializeField] private float endCoolDownRange;
+
     // Start is called before the first frame update
     void OnEnable()
     {

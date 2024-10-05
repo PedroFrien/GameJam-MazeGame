@@ -19,6 +19,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveThreshold = 0.1f;
     [SerializeField] private float cameraPanSpeed;
 
+    [Header("Top Down Camera Bounds")]
+    [SerializeField] private float cameraX;
+    [SerializeField] private float cameraNegativeX;
+    [SerializeField] private float cameraZ;
+    [SerializeField] private float cameraNegativeZ;
+
+
+
     private bool movementEnabled = true;
     [SerializeField] private bool topDown = false;
 
@@ -71,30 +79,30 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (topDown)
+        if (topDown && movementEnabled)
         {
-            if (Input.GetKey(KeyCode.W))
+            if (Input.GetKey(KeyCode.W) && transform.position.z <= cameraZ)
             {
                 Debug.Log("W");
                 transform.Translate(0, cameraPanSpeed * Time.deltaTime, 0);
                 // positive Z
             }
 
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(KeyCode.S) && transform.position.z >= cameraNegativeZ)
             {
                 Debug.Log("S");
                 transform.Translate(0, -cameraPanSpeed * Time.deltaTime, 0);
                 // negative Z
             }
 
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.D) && transform.position.x <= cameraX)
             {
                 Debug.Log("D");
                 transform.Translate(cameraPanSpeed * Time.deltaTime, 0, 0);
                 // positive X
             }
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.A) && transform.position.x >= cameraNegativeX)
             {
                 Debug.Log("A");
                 transform.Translate(-cameraPanSpeed * Time.deltaTime, 0, 0);
