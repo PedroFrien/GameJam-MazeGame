@@ -19,6 +19,7 @@ public class Heater : MonoBehaviour
     private float areaLightStartingIntensity;
 
     [SerializeField] private float areaLight_IntensityIncrease;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,6 +39,8 @@ public class Heater : MonoBehaviour
             isFiring = enemiesInTrigger();
 
             areaLight.intensity += areaLight_IntensityIncrease;
+
+            FindObjectOfType<AudioManager>().PlaySound("HeaterRepeat", transform.position, gameObject);
         }
 
         if (!isFiring)
@@ -51,7 +54,15 @@ public class Heater : MonoBehaviour
         }
     }
 
-   
+    private void OnTriggerEnter(Collider other)
+    {
+        FindObjectOfType<AudioManager>().PlaySound("HeaterStart", transform.position, gameObject);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        FindObjectOfType<AudioManager>().PlaySound("HeaterEnd", transform.position, gameObject);
+    }
     private void OnTriggerStay(Collider other)
     {
         healthBarSlider.gameObject.SetActive(true);
@@ -95,4 +106,6 @@ public class Heater : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    
 }

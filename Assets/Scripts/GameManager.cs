@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
         {
             jumpscarePlayer.SetActive(true);
             jumpscareScreen.SetActive(true);
-            FindObjectOfType<AudioManager>().PlaySound("PrestonHourglass", player.transform.position);
+            FindObjectOfType<AudioManager>().PlaySound("PrestonHourglass", player.transform.position, player);
 
             yield return new WaitForSeconds(3);
 
@@ -79,6 +79,6 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        
+        FindObjectOfType<AudioManager>().PlaySound("DeathSting", player.transform.position, player);
     }
 }

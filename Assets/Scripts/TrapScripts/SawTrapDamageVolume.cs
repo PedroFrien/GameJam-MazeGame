@@ -29,6 +29,8 @@ public class SawTrapDamageVolume : MonoBehaviour
         Debug.Log("Trigger Staying");
         if (other.gameObject.layer == LayerMask.NameToLayer("TrapVictim"))
         {
+            FindObjectOfType<AudioManager>().PlaySound("BuzzsawTrapRepeat", transform.position, gameObject);
+
             if (other.gameObject.GetComponent<AI_TowerDefenseEnemy>() != null)
             {
                 Debug.Log("Dealing Damage");

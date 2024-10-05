@@ -56,7 +56,7 @@ public class SpikeTrap : MonoBehaviour
 
     private IEnumerator RaiseDamageVolume(float raiseSpeed, float lowerSpeed, float raiseHeight, float lowerDelay, float raiseDelay)
     {
-        
+        //FindObjectOfType<AudioManager>().PlaySound()
         Vector3 targetPosition = new Vector3(damageVolume.transform.position.x, damageVolume.transform.position.y + raiseHeight, damageVolume.transform.position.z);
         Vector3 originalPosition = damageVolume.transform.position;
         yield return new WaitForSeconds(raiseDelay);

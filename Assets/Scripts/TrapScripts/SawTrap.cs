@@ -66,6 +66,7 @@ public class SawTrap : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("TrapVictim"))
         {
+            FindObjectOfType<AudioManager>().PlaySound("BuzzsawTrapStart", transform.position, gameObject);
             raising = true;
             
         }
@@ -77,6 +78,8 @@ public class SawTrap : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("TrapVictim"))
         {
             raising = false;
+
+            FindObjectOfType<AudioManager>().PlaySound("BuzzsawTrapEnd", transform.position, gameObject);
 
             if (other.gameObject.GetComponent<AI_TowerDefenseEnemy>() != null && (other.gameObject.GetComponent<AI_TowerDefenseEnemy>().slowed == false))
             {

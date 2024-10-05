@@ -307597,7 +307597,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 300319331}
-  - {fileID: 1670757462}
   - {fileID: 1508839903}
   - {fileID: 1796481077}
   - {fileID: 603811680}
@@ -373954,11 +373953,11 @@ Transform:
   m_GameObject: {fileID: 1670757461}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 381.43298, y: 282.51788, z: -9.553463}
+  m_LocalPosition: {x: 387.0464, y: 277.79965, z: 1.4852934}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1344741193}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1670757463
 MonoBehaviour:
@@ -373973,10 +373972,143 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - clip: {fileID: 8300000, guid: e3b1a12d40d08634cb15f02de4131188, type: 3}
+  - clip: {fileID: 8300000, guid: 8a43ce9f56b51ef4a937949ca458f379, type: 3}
     name: PrestonHourglass
     volume: 1
     pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c8662912ec688aa478dbe1f80e080348, type: 3}
+    name: TrapPlaced
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f0879b82d25c0d445b30890ab4190b81, type: 3}
+    name: BuzzsawTrapEnd
+    volume: 0.1
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ab968c70ecff81b4bb14cb855b65cc8b, type: 3}
+    name: BuzzsawTrapRepeat
+    volume: 0.1
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e3b1a12d40d08634cb15f02de4131188, type: 3}
+    name: BuzzsawTrapStart
+    volume: 0.1
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: cf8eb1208b4956f498fef1885d98f818, type: 3}
+    name: FigureSlideDanger
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 1bdc7ce7d5d15cd4197410c28db9010f, type: 3}
+    name: FigureSlideFar
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 4ca1d0fe2d42c03418d43033d6e255d1, type: 3}
+    name: FigureTap01
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 917646f9c9a6e4443bce790d338034ff, type: 3}
+    name: FigureTap02
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: a9a7f54684dba84459f7e736e4175a8c, type: 3}
+    name: HeaterEnd
+    volume: 0.1
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 4059c31382ffc8b42bb314ef40857cd0, type: 3}
+    name: HeaterRepeat
+    volume: 0.1
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 5d21d86ee8a31384aaf7a0bcaebfd95f, type: 3}
+    name: HeaterStart
+    volume: 0.1
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 7c837e15693f57c41b8f9b1a318812a0, type: 3}
+    name: DeathSting
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 26a6f8ae42f324843912db24dfa40db1, type: 3}
+    name: MazeAmbience
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c55059b79f29a4044afc465ea19dbe16, type: 3}
+    name: TopDownMusic
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 3419d89cd4ab8744194d9914e86b6a9c, type: 3}
+    name: PlayerDamage
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f7e6a79b088c5dc4982c3df7297f5bc6, type: 3}
+    name: PlayerRun
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 5d496809ac22851499940982c0c51add, type: 3}
+    name: PlayerWalk
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 8a43ce9f56b51ef4a937949ca458f379, type: 3}
+    name: PrestonHourglass
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 65ea4abe5587718489bfae9c393919bc, type: 3}
+    name: TempWallEnd
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 81299b776c61b6f4bbb15c11fe9bba1a, type: 3}
+    name: TempWallStart
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 3e90e2d18426b4d4f8e365e2e5b93610, type: 3}
+    name: TrapDispensed
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 9506d6d83b4742a44b8fc38c533161d7, type: 3}
+    name: TrapDrop
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
     source: {fileID: 0}
 --- !u!43 &1670882825
 Mesh:
@@ -477491,6 +477623,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1670757462}
   - {fileID: 584241730}
   - {fileID: 747208578}
   - {fileID: 1271525385}

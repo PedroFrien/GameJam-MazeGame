@@ -112,7 +112,9 @@ public class NewTrapManager : MonoBehaviour
         var spawnedTrap = Instantiate(placingTrap, offset, Quaternion.identity);
         //spawnedTrap.transform.localScale = new Vector3(gridSize, spawnedTrap.transform.localScale.y, gridSize);
         spawnedTrap.transform.SetParent(trapCollection.transform);
-        
+
+        FindObjectOfType<AudioManager>().PlaySound("TrapPlaced", Camera.main.transform.position, spawnedTrap);
+
         if (infinite == false)
         {
             trapToPlace = null;

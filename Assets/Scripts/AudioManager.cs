@@ -16,8 +16,15 @@ public class Sound
     [Range(.1f, 3f)]
     public float pitch;
 
+    [Range(0.1f, 3f)] // You can adjust this range as needed
+    public float speed = 1f; // Default speed set to 1 (normal speed)
+
     [HideInInspector]
     public AudioSource source;
+
+    // Dictionary to track which GameObjects are currently playing this sound
+    [HideInInspector]
+    public HashSet<GameObject> playingObjects = new HashSet<GameObject>();
 }
 
 public class AudioManager : MonoBehaviour
@@ -25,6 +32,7 @@ public class AudioManager : MonoBehaviour
     public Sound[] sounds;
 
     public static AudioManager instance;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -36,7 +44,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -47,14 +54,33 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    public void PlaySound(string name, Vector3 position)
+    // Method to play sound from a GameObject
+    public void PlaySound(string name, Vector3 position, GameObject playingObject)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
 
+        // Check if the sound is already playing from this GameObject
+        if (s.playingObjects.Contains(playingObject))
+        {
+            return; // Exit if the sound is already playing from this GameObject
+        }
+
         s.source.transform.position = position;
 
-        s.source.Play();
+        // Set the playback speed based on the speed variable
+        s.source.pitch = s.speed;
 
+        s.source.Play();
+        s.playingObjects.Add(playingObject); // Mark the sound as playing from this GameObject
+
+        // Reset the playing state when the sound finishes
+        StartCoroutine(ResetPlayingState(s, playingObject));
+    }
+
+    private IEnumerator ResetPlayingState(Sound s, GameObject playingObject)
+    {
+        // Wait until the clip finishes playing
+        yield return new WaitForSeconds(s.clip.length / s.speed);
+        s.playingObjects.Remove(playingObject); // Reset the playing state for this GameObject
     }
 }
