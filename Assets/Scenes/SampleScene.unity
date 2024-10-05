@@ -484,6 +484,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b084c05c0e626b44389bf96773a048d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  NewTrapManager: {fileID: 0}
+  cameraPosition1: {fileID: 0}
+  cameraPosition2: {fileID: 0}
+  cameraSpeed: 1
+  moveThreshold: 0.1
+  cameraPanSpeed: 0
+  cameraX: 0
+  cameraNegativeX: 0
+  cameraZ: 0
+  cameraNegativeZ: 0
+  topDown: 0
 --- !u!4 &438849817
 Transform:
   m_ObjectHideFlags: 0
@@ -1042,12 +1053,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba8c2406ebbfca4b870d07d914bd325, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  traps:
-  - {fileID: 1043986067447766428, guid: b75c14533b4b4e94087e6d69601fb1ba, type: 3}
-  - {fileID: 5426837359675151486, guid: 9270323f8598d114ab93b9c08bcee35f, type: 3}
-  selectedTrap: {fileID: 1043986067447766428, guid: b75c14533b4b4e94087e6d69601fb1ba, type: 3}
-  highlightPrefab: {fileID: 7970773171015657670, guid: dcb736f996d98094b8c2e215541cc9f7, type: 3}
-  currentHighlight: {fileID: 7970773171015657670, guid: dcb736f996d98094b8c2e215541cc9f7, type: 3}
 --- !u!4 &819569189
 Transform:
   m_ObjectHideFlags: 0
@@ -1879,6 +1884,7 @@ MonoBehaviour:
   _height: 10
   _tilePrefab: {fileID: 2040918470700085474, guid: 0de5b2233d215814995413719b9e4bae, type: 3}
   _gridSize: 10
+  grid: {fileID: 0}
 --- !u!4 &1171889253
 Transform:
   m_ObjectHideFlags: 0
@@ -2207,10 +2213,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fae418dc7593f1b44829ce4b010f3a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  newTraps: []
   traps:
   - {fileID: 804507580151445760, guid: b75c14533b4b4e94087e6d69601fb1ba, type: 3}
-  GridManager: {fileID: 1171889251}
-  selectedTrap: {fileID: 804507580151445760, guid: b75c14533b4b4e94087e6d69601fb1ba, type: 3}
+  gridManager: {fileID: 0}
+  grid: {fileID: 0}
+  playerController: {fileID: 0}
+  trapCollection: {fileID: 0}
+  newSelectedTrap: 
+  nullTrap: {fileID: 0}
+  sampleText: {fileID: 0}
+  infiniteText: {fileID: 0}
+  infinite: 0
 --- !u!4 &1508839903
 Transform:
   m_ObjectHideFlags: 0
@@ -2427,9 +2441,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a10b9170671b44d954948ae9ade3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 5
-  height: 5
-  cellSize: 2.5
 --- !u!4 &1890802638
 Transform:
   m_ObjectHideFlags: 0
@@ -2494,7 +2505,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.06666667
+  m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 20351098912e9424495b1e9c9bbe8595, type: 2}
   m_BuildHeightMesh: 0
@@ -3064,6 +3075,14 @@ PrefabInstance:
     - target: {fileID: 228707685922250692, guid: 72a3be3056fea8d4faf574095cf7fed6, type: 3}
       propertyPath: m_Name
       value: TestEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164441895457690961, guid: 72a3be3056fea8d4faf574095cf7fed6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164441895457690961, guid: 72a3be3056fea8d4faf574095cf7fed6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3343049797596944781, guid: 72a3be3056fea8d4faf574095cf7fed6, type: 3}
       propertyPath: m_Speed
