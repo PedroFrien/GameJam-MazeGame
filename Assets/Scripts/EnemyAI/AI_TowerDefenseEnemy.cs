@@ -13,8 +13,10 @@ public class AI_TowerDefenseEnemy : MonoBehaviour
     public float reverseTime = 2f;
     private bool isReversing = false;
 
+    public bool slowed = false;
+
     public float health = 200;
-    public float maxHealth = 200;
+    public float maxHealth;
 
     public float speed;
 
@@ -23,14 +25,16 @@ public class AI_TowerDefenseEnemy : MonoBehaviour
         towerDefenseEnemyManager = FindObjectOfType<TowerDefenseEnemyManager>().gameObject;
 
         speed = towerDefenseEnemyManager.GetComponent<TowerDefenseEnemyManager>().speed;
-
-        agent.speed = speed;
+        
+        maxHealth = health;
     }
     // Update is called once per frame
     void Update()
     {
         //Checks for goal cube by searching it's name. Once found it sets that
         //point as the destination
+        agent.speed = speed;
+
         GameObject goal = GameObject.FindWithTag("Goal");
 
         if (goal != null)

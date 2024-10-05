@@ -15,6 +15,7 @@ TagManager:
   - EnemySpawner
   - GoalSwitchTest
   - GameManager
+  - HealthBar
   layers:
   - Default
   - TransparentFX

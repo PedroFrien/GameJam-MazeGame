@@ -25,7 +25,12 @@ public class NewGoalSwitch : MonoBehaviour
 
     [SerializeField] private GameObject grid;
 
+    [SerializeField] private GameObject trapButtons;
+
+    [SerializeField] private GameObject trapCollection;
+
     private GameObject[] enemies;
+    private GameObject[] healthBars;
 
     private GameObject player;
 
@@ -83,6 +88,9 @@ public class NewGoalSwitch : MonoBehaviour
 
         CleanEnemies();
 
+        healthBars = GameObject.FindGameObjectsWithTag("HealthBar");
+
+
         if (!firstPerson)
         {
             
@@ -109,6 +117,10 @@ public class NewGoalSwitch : MonoBehaviour
             trapSpawner.gameObject.SetActive(false);
 
             grid.gameObject.SetActive(false);
+
+            trapButtons.gameObject.SetActive(false);
+
+            RemoveHealthBars();
         }
 
         else
@@ -127,8 +139,12 @@ public class NewGoalSwitch : MonoBehaviour
 
             trapSpawner.gameObject.SetActive(true);
 
+            trapButtons.gameObject.SetActive(true);
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            EnableHealthBars();
         }
 
     }
@@ -140,6 +156,30 @@ public class NewGoalSwitch : MonoBehaviour
         foreach (GameObject obj in enemies)
         {
             Destroy(obj);
+        }
+    }
+
+    private void RemoveHealthBars()
+    {
+        foreach (var healthBar in healthBars)
+        {
+            healthBar.gameObject.SetActive(false);
+        }
+    }
+
+    private void EnableHealthBars()
+    {
+        healthBars = GameObject.FindGameObjectsWithTag("HealthBar");
+
+        foreach (Transform trap in trapCollection.transform)
+        {
+            foreach (Transform item in trap.gameObject.transform)
+            {
+                if (item.name == "HealthBarFunctionality")
+                {
+                    item.gameObject.SetActive(true);
+                }
+            }
         }
     }
 
