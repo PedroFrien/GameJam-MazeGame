@@ -8,7 +8,6 @@ using UnityEngine;
 public class Sound
 {
     public AudioClip clip;
-
     public string name;
 
     [Range(0f, 10f)]
@@ -33,6 +32,9 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
+    // Keep track of the currently playing music track
+    private Sound currentMusic;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -48,9 +50,16 @@ public class AudioManager : MonoBehaviour
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
-
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+        }
+
+        foreach (Sound m in music)
+        {
+            m.source = gameObject.AddComponent<AudioSource>();
+            m.source.clip = m.clip;
+            m.source.volume = m.volume;
+            m.source.loop = true; // Loop the background music
         }
     }
 
@@ -82,5 +91,45 @@ public class AudioManager : MonoBehaviour
         // Wait until the clip finishes playing
         yield return new WaitForSeconds(s.clip.length / s.speed);
         s.playingObjects.Remove(playingObject); // Reset the playing state for this GameObject
+    }
+
+    // Method to play background music
+    public void PlayBackgroundMusic(string name)
+    {
+        Sound m = Array.Find(music, track => track.name == name);
+        if (m == null) return;
+
+        // Stop current music if it's playing
+        if (currentMusic != null)
+        {
+            currentMusic.source.Stop();
+        }
+
+        // Play the new music
+        m.source.Play();
+        currentMusic = m; // Set the current music track
+    }
+
+    // Method to stop the currently playing background music
+    public void StopBackgroundMusic()
+    {
+        if (currentMusic != null)
+        {
+            currentMusic.source.Stop();
+            currentMusic = null;
+        }
+    }
+
+    // Method to toggle background music
+    public void ToggleBackgroundMusic()
+    {
+        if (currentMusic != null)
+        {
+            StopBackgroundMusic(); // If music is playing, stop it
+        }
+        else if (music.Length > 0) // If there's music available to play
+        {
+            PlayBackgroundMusic(music[0].name); // Play the first track as default (or implement a better way to choose)
+        }
     }
 }

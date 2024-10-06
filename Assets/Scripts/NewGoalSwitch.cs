@@ -52,6 +52,8 @@ public class NewGoalSwitch : MonoBehaviour
         towerDefenseTutorial.gameObject.SetActive(true);
 
         scaries.gameObject.SetActive(false);
+
+        FindObjectOfType<AudioManager>().PlayBackgroundMusic("TowerDefense");
     }
 
     // Update is called once per frame
@@ -107,7 +109,7 @@ public class NewGoalSwitch : MonoBehaviour
     public IEnumerator SwitchGoals()
     {
 
-        
+        FindObjectOfType<AudioManager>().StopBackgroundMusic();
 
         healthBars = GameObject.FindGameObjectsWithTag("HealthBar");
 
@@ -155,6 +157,10 @@ public class NewGoalSwitch : MonoBehaviour
 
             lighting.gameObject.SetActive(false);
 
+            
+            FindObjectOfType<AudioManager>().PlayBackgroundMusic("FirstPerson");
+            
+
             CleanEnemies();
 
         }
@@ -185,6 +191,9 @@ public class NewGoalSwitch : MonoBehaviour
             scaries.gameObject.SetActive(false);
 
             lighting.gameObject.SetActive(true);
+
+  
+            FindObjectOfType<AudioManager>().PlayBackgroundMusic("TowerDefense");
 
             CleanEnemies();
         }
