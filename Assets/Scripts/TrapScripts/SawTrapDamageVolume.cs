@@ -8,7 +8,7 @@ public class SawTrapDamageVolume : MonoBehaviour
     private float bleedDamage;
     private float bleedProc;
     private float slowDuration;
-    
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -54,7 +54,7 @@ public class SawTrapDamageVolume : MonoBehaviour
         }
     }
 
-    
+
 
     private IEnumerator ApplyBleed(GameObject target, float bleedProc, float bleedDamage)
     {
