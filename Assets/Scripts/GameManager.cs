@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private TMP_Text gameOverTime;
 
+    [SerializeField] private Camera towerDefenseCamera;
+
     
 
     
@@ -29,6 +31,8 @@ public class GameManager : MonoBehaviour
     {
         gameOverScreen.SetActive(false);
         Time.timeScale = 1;
+
+        towerDefenseCamera = Camera.main;
     }
 
     // Update is called once per frame

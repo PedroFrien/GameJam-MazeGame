@@ -50,6 +50,8 @@ public class NewGoalSwitch : MonoBehaviour
         spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawner");
 
         towerDefenseTutorial.gameObject.SetActive(true);
+
+        scaries.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -118,6 +120,7 @@ public class NewGoalSwitch : MonoBehaviour
             crystalCam.gameObject.SetActive(true);
 
             yield return new WaitForSeconds(5);
+            //FindObjectOfType<AudioManager>().PlaySound("")
 
             crystalCam.gameObject.SetActive(false);
             towerDefenseEnemyManager.gameObject.SetActive(false);
