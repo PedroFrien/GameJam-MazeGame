@@ -37,7 +37,12 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Dead");
 
-        
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Agent");
+
+        foreach (GameObject enemy in enemies)
+        {
+            Destroy(enemy);
+        }
 
         StartCoroutine(JumpScare(enemyKill));
         
@@ -54,9 +59,9 @@ public class GameManager : MonoBehaviour
         {
             jumpscarePlayer.SetActive(true);
             jumpscareScreen.SetActive(true);
-            FindObjectOfType<AudioManager>().PlaySound("PrestonHourglass", player.transform.position, player);
+            FindObjectOfType<AudioManager>().PlaySound("Jumpscare", player.transform.position, player);
 
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(4.5f);
 
             Destroy(jumpscarePlayer);
             Destroy(jumpscareScreen);

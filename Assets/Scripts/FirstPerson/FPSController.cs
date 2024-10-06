@@ -89,6 +89,15 @@ public class FPSController : MonoBehaviour
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
 
         }
+
+        if (curSpeedX > 0 && !isRunning)
+        {
+            FindObjectOfType<AudioManager>().PlaySound("PlayerWalking", transform.position, gameObject);
+        }
+        if (isRunning)
+        {
+            FindObjectOfType<AudioManager>().PlaySound("PlayerRunning", transform.position, gameObject);
+        }
     }
 
     public void TakeDamage(float damage)

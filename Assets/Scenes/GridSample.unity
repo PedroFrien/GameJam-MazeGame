@@ -370975,13 +370975,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - clip: {fileID: 8300000, guid: 8a43ce9f56b51ef4a937949ca458f379, type: 3}
+  - clip: {fileID: 8300000, guid: 0e0073792408224428a5ffdd4c6ceb70, type: 3}
     name: PrestonHourglass
     volume: 1
     pitch: 0.1
     speed: 1
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: c8662912ec688aa478dbe1f80e080348, type: 3}
+  - clip: {fileID: 8300000, guid: 215fd23a80af37e459e2719a085a65a8, type: 3}
     name: TrapPlaced
     volume: 0.25
     pitch: 0.1
@@ -371107,11 +371107,72 @@ MonoBehaviour:
     pitch: 0.1
     speed: 1
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 9506d6d83b4742a44b8fc38c533161d7, type: 3}
+  - clip: {fileID: 8300000, guid: bfbdde32bcfc1dd4e9eb95bb3521f491, type: 3}
+    name: EnemyAlert
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 77034a6c135c7f14a85dd087d09eef20, type: 3}
     name: TrapDrop
     volume: 0.25
     pitch: 0.1
     speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: fd53d5ab00613894fbd685b3be19df7e, type: 3}
+    name: Jumpscare
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 58cc1069483391f4988509a14e5e975d, type: 3}
+    name: PlayerDamage
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ff6c07c53dc155a46804011e632cd8ec, type: 3}
+    name: FigureGrind
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 694334e0fe6f3454ea673e908296c814, type: 3}
+    name: PlayerRunning
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 9be34e5ecc8afed4e9a362d8068c6230, type: 3}
+    name: PlayerWalking
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 686e360913840ec4e90c14de328c8a1d, type: 3}
+    name: SpikeTrapStart
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 686e360913840ec4e90c14de328c8a1d, type: 3}
+    name: SpikeTrapStart
+    volume: 0.25
+    pitch: 0.1
+    speed: 1
+    source: {fileID: 0}
+  music:
+  - clip: {fileID: 0}
+    name: 
+    volume: 0
+    pitch: 0
+    speed: 0
+    source: {fileID: 0}
+  - clip: {fileID: 0}
+    name: 
+    volume: 0
+    pitch: 0
+    speed: 0
     source: {fileID: 0}
 --- !u!43 &1670882825
 Mesh:
