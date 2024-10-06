@@ -371,9 +371,9 @@ MonoBehaviour:
   healthBarSlider: {fileID: 2124089925662980134}
   raiseSpeed: 4
   lowerSpeed: 1
-  raiseHeight: 2
+  raiseHeight: 1
   lowerDelay: 1
-  raiseDelay: 1
+  raiseDelay: 0.5
   trapDamage: 100
   trapCooldown: 5
   trapDurability: 10

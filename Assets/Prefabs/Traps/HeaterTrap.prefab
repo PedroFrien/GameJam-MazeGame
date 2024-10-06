@@ -266,7 +266,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damagePerTick: 0.65
-  durability: 6000
+  durability: 5000
   damageVolume: {fileID: 4612245629216272145}
   healthBarSlider: {fileID: 8786330664009769563}
   isFiring: 0

@@ -107,7 +107,7 @@ public class NewGoalSwitch : MonoBehaviour
     public IEnumerator SwitchGoals()
     {
 
-        CleanEnemies();
+        
 
         healthBars = GameObject.FindGameObjectsWithTag("HealthBar");
 
@@ -155,7 +155,7 @@ public class NewGoalSwitch : MonoBehaviour
 
             lighting.gameObject.SetActive(false);
 
-            
+            CleanEnemies();
 
         }
 
@@ -185,6 +185,8 @@ public class NewGoalSwitch : MonoBehaviour
             scaries.gameObject.SetActive(false);
 
             lighting.gameObject.SetActive(true);
+
+            CleanEnemies();
         }
 
     }

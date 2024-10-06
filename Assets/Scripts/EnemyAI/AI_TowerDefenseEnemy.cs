@@ -101,9 +101,9 @@ public class AI_TowerDefenseEnemy : MonoBehaviour
 
     private void Die()
     {
-        int randomIndex = Random.Range(0, deathSounds.Length);
+        //int randomIndex = Random.Range(0, deathSounds.Length);
 
-        GetComponent<AudioManager>().PlaySound(deathSounds[randomIndex], transform.position, gameObject);
+        //GetComponent<AudioManager>().PlaySound(deathSounds[randomIndex], transform.position, gameObject);
 
         Destroy(gameObject);
     }
