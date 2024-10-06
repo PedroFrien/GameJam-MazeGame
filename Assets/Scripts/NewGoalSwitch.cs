@@ -29,6 +29,7 @@ public class NewGoalSwitch : MonoBehaviour
 
     [SerializeField] private GameObject trapCollection;
 
+    [SerializeField] private GameObject scaries;
     private GameObject[] enemies;
     private GameObject[] healthBars;
 
@@ -123,6 +124,8 @@ public class NewGoalSwitch : MonoBehaviour
             trapButtons.gameObject.SetActive(false);
 
             RemoveHealthBars();
+
+            scaries.gameObject.SetActive(true);
         }
 
         else
@@ -147,6 +150,8 @@ public class NewGoalSwitch : MonoBehaviour
             Cursor.visible = true;
 
             EnableHealthBars();
+
+            scaries.gameObject.SetActive(false);
         }
 
     }

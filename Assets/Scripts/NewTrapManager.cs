@@ -45,6 +45,8 @@ public class NewTrapManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hoverText.enabled = false;
+
         gridSize = gridManager.GetComponent<GridManager>()._gridSize;
     }
 

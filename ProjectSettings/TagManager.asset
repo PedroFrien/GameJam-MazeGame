@@ -16,6 +16,7 @@ TagManager:
   - GoalSwitchTest
   - GameManager
   - HealthBar
+  - PlayerHealthbar
   layers:
   - Default
   - TransparentFX
