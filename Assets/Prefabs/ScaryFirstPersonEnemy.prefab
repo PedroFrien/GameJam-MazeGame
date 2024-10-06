@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4230707017223563168}
-  health: 200
-  chaseSpeed: 10
+  health: 400
+  chaseSpeed: 15
   slowed: 0
+  alertSoundAvailable: 1

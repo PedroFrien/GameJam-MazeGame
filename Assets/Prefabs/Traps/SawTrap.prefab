@@ -953,7 +953,7 @@ MonoBehaviour:
   bleedDamage: 0.37
   bleedProc: 5
   slowDuration: 5
-  durability: 2000
+  durability: 1500
   raising: 0
   healthBarSlider: {fileID: 988001315890908317}
 --- !u!1 &7234052010889264037

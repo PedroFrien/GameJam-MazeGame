@@ -376,7 +376,7 @@ MonoBehaviour:
   raiseDelay: 0.5
   trapDamage: 100
   trapCooldown: 5
-  trapDurability: 10
+  trapDurability: 4
   onCooldown: 0
 --- !u!1 &4088409371625420606
 GameObject:
