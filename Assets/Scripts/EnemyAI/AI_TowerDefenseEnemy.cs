@@ -20,6 +20,7 @@ public class AI_TowerDefenseEnemy : MonoBehaviour
 
     public float speed;
 
+    private string[] deathSounds = new string[] { "FigureDeath1", "FigureDeath2", "FigureDeath3", "FigureDeath4", "FigureDeath5" };
     private void Awake()
     {
         towerDefenseEnemyManager = FindObjectOfType<TowerDefenseEnemyManager>().gameObject;
@@ -100,6 +101,10 @@ public class AI_TowerDefenseEnemy : MonoBehaviour
 
     private void Die()
     {
+        int randomIndex = Random.Range(0, deathSounds.Length);
+
+        GetComponent<AudioManager>().PlaySound(deathSounds[randomIndex], transform.position, gameObject);
+
         Destroy(gameObject);
     }
 }

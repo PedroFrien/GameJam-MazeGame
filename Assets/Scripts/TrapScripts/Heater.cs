@@ -20,6 +20,11 @@ public class Heater : MonoBehaviour
 
     [SerializeField] private float areaLight_IntensityIncrease;
 
+    [SerializeField] private GameObject coils;
+
+    [SerializeField] private Material red;
+    [SerializeField] private Material white;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -41,11 +46,15 @@ public class Heater : MonoBehaviour
             areaLight.intensity += areaLight_IntensityIncrease;
 
             FindObjectOfType<AudioManager>().PlaySound("HeaterRepeat", transform.position, gameObject);
+
+            coils.GetComponent<MeshRenderer>().material = red;
         }
 
         if (!isFiring)
         {
             areaLight.intensity = areaLightStartingIntensity;
+
+            coils.GetComponent<MeshRenderer>().material = white;
         }
         
         if (durability <= 0)

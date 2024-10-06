@@ -67,15 +67,19 @@ public class NewGoalSwitch : MonoBehaviour
 
     }
 
+    public void StartGoalSwap()
+    {
+        StartCoroutine(SwitchGoals());
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Agent") && (!firstPerson))
         {
-            SwitchGoals();
+            StartCoroutine(SwitchGoals());
         }
         if (other.gameObject.CompareTag("Player") && (firstPerson))
         {
-            SwitchGoals();
+            StartCoroutine(SwitchGoals());
         }
     }
     private GameObject FindSpawnPoint()
@@ -88,7 +92,7 @@ public class NewGoalSwitch : MonoBehaviour
 
     }
 
-    public void SwitchGoals()
+    public IEnumerator SwitchGoals()
     {
 
         CleanEnemies();
@@ -100,8 +104,12 @@ public class NewGoalSwitch : MonoBehaviour
 
         if (!firstPerson)
         {
-            
+            towerDefenseCameraRig.gameObject.SetActive(false);
+            crystalCam.gameObject.SetActive(true);
 
+            yield return new WaitForSeconds(5);
+
+            crystalCam.gameObject.SetActive(false);
             towerDefenseEnemyManager.gameObject.SetActive(false);
 
             GameObject spawnPoint = FindSpawnPoint();
@@ -132,6 +140,9 @@ public class NewGoalSwitch : MonoBehaviour
             scaries.gameObject.SetActive(true);
 
             lighting.gameObject.SetActive(false);
+
+            
+            
         }
 
         else
