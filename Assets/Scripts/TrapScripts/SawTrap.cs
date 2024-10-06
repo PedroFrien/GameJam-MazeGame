@@ -81,16 +81,16 @@ public class SawTrap : MonoBehaviour
 
             FindObjectOfType<AudioManager>().PlaySound("BuzzsawTrapEnd", transform.position, gameObject);
 
-            if (other.gameObject.GetComponent<AI_TowerDefenseEnemy>() != null && (other.gameObject.GetComponent<AI_TowerDefenseEnemy>().slowed == false))
+            if (other.gameObject != null && other.gameObject.GetComponent<AI_TowerDefenseEnemy>() != null && (other.gameObject.GetComponent<AI_TowerDefenseEnemy>().slowed == false))
             {
                 StartCoroutine(ApplySlow(other.gameObject, slowDuration));
             }
 
-            if (other.gameObject.GetComponent<AI_FirstPersonEnemy>() != null && (other.gameObject.GetComponent<AI_FirstPersonEnemy>().slowed == false))
+            if (other.gameObject != null && other.gameObject.GetComponent<AI_FirstPersonEnemy>() != null && (other.gameObject.GetComponent<AI_FirstPersonEnemy>().slowed == false))
             {
                 StartCoroutine(ApplySlow(other.gameObject, slowDuration));
             }
-            if (other.gameObject.GetComponent<FPSController>() != null && (other.gameObject.GetComponent<FPSController>().slowed == false))
+            if (other.gameObject != null && other.gameObject.GetComponent<FPSController>() != null && (other.gameObject.GetComponent<FPSController>().slowed == false))
             {
                 StartCoroutine(ApplySlow(other.gameObject, slowDuration));
             }

@@ -46,6 +46,7 @@ public class AI_FirstPersonEnemy : MonoBehaviour
             Vector3 goalPosition = goalTransform.position;
             agent.SetDestination(goalPosition);
 
+            
         }
 
 
@@ -54,10 +55,12 @@ public class AI_FirstPersonEnemy : MonoBehaviour
         if (SeesPlayer())
         {
             agent.speed = speed + chaseSpeed;
+            FindObjectOfType<AudioManager>().PlaySound("FigureSlideFar", transform.position, gameObject);
         }
         if (!SeesPlayer())
         {
             agent.speed = speed;
+            FindObjectOfType<AudioManager>().PlaySound("FigureSlideDanger", transform.position, gameObject);
         }
     }
 

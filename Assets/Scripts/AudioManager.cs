@@ -29,7 +29,7 @@ public class Sound
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+    public Sound[] sounds, music;
 
     public static AudioManager instance;
 

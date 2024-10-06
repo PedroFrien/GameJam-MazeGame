@@ -7,6 +7,7 @@ public class TrapSpawner : MonoBehaviour
     [SerializeField] private GameObject[] trapFigurines;
     [SerializeField] private float startCoolDownRange;
     [SerializeField] private float endCoolDownRange;
+    [SerializeField] private float dispenseDelay;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -24,6 +25,9 @@ public class TrapSpawner : MonoBehaviour
     {
         while (true)
         {
+            FindObjectOfType<AudioManager>().PlaySound("TrapDrop", transform.position, gameObject);
+            yield return new WaitForSeconds(dispenseDelay);
+            FindObjectOfType<AudioManager>().PlaySound("TrapDispensed", transform.position, gameObject);
             GameObject selectedTrap = trapFigurines[Random.Range(0, trapFigurines.Length)];
             Instantiate(selectedTrap, transform.position, Quaternion.identity);
             yield return new WaitForSeconds(Random.Range(startCoolDownRange, endCoolDownRange));
