@@ -401199,8 +401199,8 @@ MonoBehaviour:
   - name: Hourglass
     figurinePrefab: {fileID: 1502026419314912277, guid: 24b552ed6883cae41bdd021e1d759ae5, type: 3}
     spawnWeight: 2.21
-  startCoolDownRange: 3
-  endCoolDownRange: 5
+  startCoolDownRange: 5
+  endCoolDownRange: 7
   dispenseDelay: 1
 --- !u!43 &1796503739
 Mesh:
@@ -450046,7 +450046,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.8126526, y: 543}
+  m_AnchoredPosition: {x: 1.8126526, y: 486}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2041995115

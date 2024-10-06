@@ -113,6 +113,8 @@ public class NewGoalSwitch : MonoBehaviour
 
         healthBars = GameObject.FindGameObjectsWithTag("HealthBar");
 
+        
+
         FindObjectOfType<AudioManager>().PlaySound("GoalSwap", transform.position, gameObject);
 
 
@@ -169,6 +171,8 @@ public class NewGoalSwitch : MonoBehaviour
         {
             towerDefenseEnemyManager.gameObject.SetActive(true);
 
+            player = GameObject.FindGameObjectWithTag("Player");
+
             Destroy(player);
 
             towerDefenseCameraRig.gameObject.SetActive(true);
@@ -196,6 +200,9 @@ public class NewGoalSwitch : MonoBehaviour
             FindObjectOfType<AudioManager>().PlayBackgroundMusic("TowerDefense");
 
             CleanEnemies();
+
+            Destroy(player);
+
         }
 
     }
