@@ -61,6 +61,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void Quit()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     private IEnumerator JumpScare(bool enemyKill)
     {
         player = GameObject.FindGameObjectWithTag("Player");

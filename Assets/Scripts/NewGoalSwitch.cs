@@ -118,9 +118,10 @@ public class NewGoalSwitch : MonoBehaviour
         {
             towerDefenseCameraRig.gameObject.SetActive(false);
             crystalCam.gameObject.SetActive(true);
+            FindObjectOfType<AudioManager>().PlaySound("CrystalSting", transform.position, gameObject);
 
             yield return new WaitForSeconds(5);
-            //FindObjectOfType<AudioManager>().PlaySound("")
+            
 
             crystalCam.gameObject.SetActive(false);
             towerDefenseEnemyManager.gameObject.SetActive(false);
