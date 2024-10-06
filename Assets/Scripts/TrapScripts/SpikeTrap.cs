@@ -56,7 +56,7 @@ public class SpikeTrap : MonoBehaviour
 
     private IEnumerator RaiseDamageVolume(float raiseSpeed, float lowerSpeed, float raiseHeight, float lowerDelay, float raiseDelay)
     {
-        //FindObjectOfType<AudioManager>().PlaySound()
+        FindObjectOfType<AudioManager>().PlaySound("SpikeTrapStart", transform.position, gameObject);
         Vector3 targetPosition = new Vector3(damageVolume.transform.position.x, damageVolume.transform.position.y + raiseHeight, damageVolume.transform.position.z);
         Vector3 originalPosition = damageVolume.transform.position;
         yield return new WaitForSeconds(raiseDelay);
@@ -68,6 +68,7 @@ public class SpikeTrap : MonoBehaviour
         onCooldown = true;
         yield return new WaitForSeconds(lowerDelay);
 
+        FindObjectOfType<AudioManager>().PlaySound("SpikeTrapEnd", transform.position, gameObject);
         while (Vector3.Distance(damageVolume.transform.position, originalPosition) > 0.01f)
         {
             damageVolume.transform.position = Vector3.MoveTowards(damageVolume.transform.position, originalPosition, lowerSpeed * Time.deltaTime);
