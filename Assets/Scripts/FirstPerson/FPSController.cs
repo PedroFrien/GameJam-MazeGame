@@ -38,6 +38,8 @@ public class FPSController : MonoBehaviour
     [SerializeField] private float runningStepDelay;
     private bool isStepping;
 
+    [SerializeField] private GameObject firstPersonTutorial;
+
 
     // Start is called before the first frame update
 
@@ -49,6 +51,8 @@ public class FPSController : MonoBehaviour
 
         healthBarSlider.maxValue = health;
         healthBarSlider.value = health;
+
+        firstPersonTutorial.gameObject.SetActive(true);
 
     }
 
@@ -74,6 +78,7 @@ public class FPSController : MonoBehaviour
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
             moveDirection.y = jumpPower;
+            firstPersonTutorial.gameObject.SetActive(false);
         }
         else
         {

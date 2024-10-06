@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NewGoalSwitch : MonoBehaviour
 {
@@ -41,10 +42,14 @@ public class NewGoalSwitch : MonoBehaviour
 
     [SerializeField] private float spawnOffset;
 
+    [SerializeField] private GameObject towerDefenseTutorial;
+
     // Start is called before the first frame update
     void Start()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawner");
+
+        towerDefenseTutorial.gameObject.SetActive(true);
     }
 
     // Update is called once per frame
@@ -64,7 +69,12 @@ public class NewGoalSwitch : MonoBehaviour
         //}
         // FOR TESTING PURPOSES
         
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            towerDefenseTutorial.gameObject.SetActive(false);
+        }
 
+        
     }
 
     public void StartGoalSwap()
@@ -142,7 +152,7 @@ public class NewGoalSwitch : MonoBehaviour
             lighting.gameObject.SetActive(false);
 
             
-            
+
         }
 
         else
