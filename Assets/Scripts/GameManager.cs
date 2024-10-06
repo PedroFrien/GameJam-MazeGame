@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject jumpscareScreen;
     [SerializeField] private GameObject jumpscarePlayer;
     [SerializeField] private GameObject playerHealthbar;
+  
 
     [SerializeField] private TMP_Text gameOverTime;
 
@@ -56,6 +57,12 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator JumpScare(bool enemyKill)
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        playerHealthbar = GameObject.FindGameObjectWithTag("PlayerHealthbar");
+
+        Destroy(playerHealthbar);
+
         if (enemyKill)
         {
             jumpscarePlayer.SetActive(true);
@@ -68,9 +75,7 @@ public class GameManager : MonoBehaviour
             Destroy(jumpscareScreen);
         }
 
-        playerHealthbar = player.transform.Find("Healthbar").gameObject;
-
-        playerHealthbar.SetActive(false);
+        
 
         Time.timeScale = 0;
 
@@ -80,7 +85,7 @@ public class GameManager : MonoBehaviour
 
         gameOverTime.text = $"{survivalTime.ToString("F0")} seconds.";
 
-        player = GameObject.FindGameObjectWithTag("Player");
+        
 
         player.GetComponent<FPSController>().enabled = false;
         player.GetComponent<CharacterController>().enabled = false;

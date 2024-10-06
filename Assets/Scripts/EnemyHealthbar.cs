@@ -17,7 +17,11 @@ public class EnemyHealthbar : MonoBehaviour
     void Update()
     {
         mainCamera = Camera.main;
-        transform.rotation = mainCamera.transform.rotation;
+        
+        if (mainCamera != null )
+        {
+            transform.rotation = mainCamera.transform.rotation;
+        }
     }
 
     public void UpdateHealth(float currentValue, float maxValue)
