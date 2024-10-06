@@ -150,6 +150,8 @@ MonoBehaviour:
   canMove: 1
   slowed: 0
   healthBarSlider: {fileID: 4533889930038954296}
+  walkingStepDelay: 0.4
+  runningStepDelay: 0.8
 --- !u!143 &5184084799410494815
 CharacterController:
   m_ObjectHideFlags: 0

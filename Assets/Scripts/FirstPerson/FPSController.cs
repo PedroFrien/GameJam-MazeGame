@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,6 +31,13 @@ public class FPSController : MonoBehaviour
     
     CharacterController characterController;
 
+    private string[] footStepSounds = new string[] { "Step1", "Step2", "Step3", "Step4", "Step5", "Step6", "Step7", "Step8" };
+
+    private float stepDelay;
+    [SerializeField] private float walkingStepDelay;
+    [SerializeField] private float runningStepDelay;
+    private bool isStepping;
+
 
     // Start is called before the first frame update
 
@@ -47,6 +55,8 @@ public class FPSController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
 
@@ -88,16 +98,46 @@ public class FPSController : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
 
+            
         }
 
-        if (curSpeedX > 0 && !isRunning)
+        //if (curSpeedX > 0 && !isRunning)
+        //{
+        //    FindObjectOfType<AudioManager>().PlaySound("PlayerWalking", transform.position, gameObject);
+        //}
+        //if (isRunning)
+        //{
+        //    FindObjectOfType<AudioManager>().PlaySound("PlayerRunning", transform.position, gameObject);
+        //}
+
+
+        if (curSpeedX > 0 && characterController.isGrounded)
         {
-            FindObjectOfType<AudioManager>().PlaySound("PlayerWalking", transform.position, gameObject);
+            if (!isStepping && isRunning)
+            {
+                isStepping = true;
+
+                StartCoroutine(StepSound(walkingStepDelay));
+            }
         }
-        if (isRunning)
+        if (!isStepping && !isRunning)
         {
-            FindObjectOfType<AudioManager>().PlaySound("PlayerRunning", transform.position, gameObject);
+            isStepping = true;
+
+            StartCoroutine(StepSound(runningStepDelay));
         }
+
+        
+
+        //if (!isRunning)
+        //{
+        //    stepDelay = runningStepDelay;
+        //}
+
+        //if (isRunning)
+        //{
+        //    stepDelay = walkingStepDelay;
+        //}
     }
 
     public void TakeDamage(float damage)
@@ -105,6 +145,8 @@ public class FPSController : MonoBehaviour
         health -= damage;
 
         healthBarSlider.value = health;
+
+        FindObjectOfType<AudioManager>().PlaySound("PlayerDamage", transform.position, gameObject);
         if (health <= 0)
         {
             Die();
@@ -115,6 +157,17 @@ public class FPSController : MonoBehaviour
     {
         healthBarSlider.gameObject.SetActive(false);
         FindObjectOfType<GameManager>().Die(false);
+    }
+
+    private IEnumerator StepSound(float stepDelay)
+    {
+        int randomIndex = Random.Range(0, footStepSounds.Length);
+
+        FindObjectOfType<AudioManager>().PlaySound(footStepSounds[randomIndex], transform.position, gameObject);
+
+        yield return new WaitForSeconds(stepDelay);
+
+        isStepping = false;
     }
 
 }

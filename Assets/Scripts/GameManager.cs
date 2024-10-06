@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject jumpscareScreen;
     [SerializeField] private GameObject jumpscarePlayer;
+    [SerializeField] private GameObject playerHealthbar;
 
     [SerializeField] private TMP_Text gameOverTime;
 
@@ -66,7 +67,10 @@ public class GameManager : MonoBehaviour
             Destroy(jumpscarePlayer);
             Destroy(jumpscareScreen);
         }
-        
+
+        playerHealthbar = player.transform.Find("Healthbar").gameObject;
+
+        playerHealthbar.SetActive(false);
 
         Time.timeScale = 0;
 

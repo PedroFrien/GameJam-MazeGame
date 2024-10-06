@@ -90,6 +90,8 @@ public class NewGoalSwitch : MonoBehaviour
 
         healthBars = GameObject.FindGameObjectsWithTag("HealthBar");
 
+        FindObjectOfType<AudioManager>().PlaySound("GoalSwap", transform.position, gameObject);
+
 
         if (!firstPerson)
         {

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 [System.Serializable]
 public struct Trap
@@ -9,6 +11,7 @@ public struct Trap
     [SerializeField] public string name;
     [SerializeField] public GameObject trapPrefab;
     [SerializeField] public Vector3 offset;
+    [SerializeField] public float spawnWeight;
 };
 
 public class NewTrapManager : MonoBehaviour
@@ -28,12 +31,17 @@ public class NewTrapManager : MonoBehaviour
 
     [SerializeField] private GameObject sampleText;
     [SerializeField] private GameObject infiniteText;
+    [SerializeField] private TMP_Text hoverText;
+
+    [SerializeField] private float hoverDistance;
 
     [SerializeField] private bool infinite = false;
 
     private Trap currentTrapStruct;
 
     private float gridSize;
+
+    private string[] FigureTaps = new string[] { "FigureTap01", "FigureTap02" };
     // Start is called before the first frame update
     void Start()
     {
@@ -74,25 +82,63 @@ public class NewTrapManager : MonoBehaviour
     {
         Debug.Log(trapToPlace);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Tile"))
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject.CompareTag("Figurine"))
             {
-                if (trapToPlace != null)
+                hoverText.enabled = true;
+                Vector3 screenPosition = Input.mousePosition + new Vector3(0, hoverDistance, 0);
+                hoverText.transform.position = screenPosition;
+
+
+                if (hit.collider.gameObject.name == "SpikeTrapFigurine(Clone)")
                 {
-                    PlaceTrapAtPosition(hit.collider.transform.position, trapToPlace);
+                    hoverText.text ="Spike Trap";
                 }
-                
+                if (hit.collider.gameObject.name == "TemporaryWallFigurine(Clone)")
+                {
+                    hoverText.text = "Temporary Wall";
+                }
+                if (hit.collider.gameObject.name == "HeaterTrapFigurine(Clone)")
+                {
+                    hoverText.text = "Heater Trap";
+                }
+                if (hit.collider.gameObject.name == "HourglassFigurine(Clone)")
+                {
+                    hoverText.text = "Hourglass";
+                }
+                if (hit.collider.gameObject.name == "SawTrapFigurine(Clone)")
+                {
+                    hoverText.text = "Saw Trap";
+                }
+            }
+            else
+            {
+                hoverText.enabled = false;
             }
 
-            if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Figurine"))
+            if (Input.GetMouseButtonDown(0))
             {
-                PickUpTrap(hit.collider.gameObject);
+                if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Tile"))
+                {
+                    if (trapToPlace != null)
+                    {
+                        PlaceTrapAtPosition(hit.collider.transform.position, trapToPlace);
+                    }
+
+                }
+
+                if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Figurine"))
+                {
+                    PickUpTrap(hit.collider.gameObject);
+                }
             }
         }
+
+        
 
         if (Input.GetKeyDown("1"))
         {
@@ -120,12 +166,17 @@ public class NewTrapManager : MonoBehaviour
             trapToPlace = null;
             sampleText.GetComponent<Text_SelectedTrap>().ChangeText("None");
             grid.SetActive(false);
+
+            
         }
        
     }
 
     void PickUpTrap(GameObject figurine)
     {
+        int randomIndex = Random.Range(0, FigureTaps.Length);
+        FindObjectOfType<AudioManager>().PlaySound(FigureTaps[randomIndex], figurine.transform.position, figurine);
+
         Debug.Log("PickUpTrap Called");
         if (figurine.name == "SpikeTrapFigurine(Clone)")
         {
@@ -140,8 +191,12 @@ public class NewTrapManager : MonoBehaviour
             SelectTrap("HeaterTrap");
         }
         if (figurine.name == "HourglassFigurine(Clone)")
+        { 
+            SelectTrap("HourGlass");
+        }
+        if (figurine.name == "SawTrapFigurine(Clone)")
         {
-            SelectTrap("Hourglass");
+            SelectTrap("SawTrap");
         }
         Destroy(figurine);
     }

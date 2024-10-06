@@ -18,7 +18,7 @@ public class AI_FirstPersonEnemy : MonoBehaviour
     private GameObject goal;
 
     public bool slowed = false;
-    private bool alertSoundAvailable;
+    public bool alertSoundAvailable = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -87,12 +87,14 @@ public class AI_FirstPersonEnemy : MonoBehaviour
             return hit.transform == goal.transform;
         }
 
+        if (alertSoundAvailable == true)
+        {
+            StartCoroutine(PlayAlertSound());
+        }
+
         return true;
 
-        if (alertSoundAvailable)
-        {
-
-        }
+        
     }
 
     public void TakeDamage(float damage)

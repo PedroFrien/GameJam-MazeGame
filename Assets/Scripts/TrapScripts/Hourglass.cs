@@ -41,6 +41,8 @@ public class Hourglass : MonoBehaviour
 
     private IEnumerator StartDying(float deathTime)
     {
+        FindObjectOfType<AudioManager>().PlaySound("PrestonHourglass", transform.position, gameObject);
+
         foreach (var enemy in enemies)
         {
             if (enemy != null)

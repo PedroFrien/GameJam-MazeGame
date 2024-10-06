@@ -22,6 +22,8 @@ public class TemporaryWall : MonoBehaviour
 
 
     {
+        FindObjectOfType<AudioManager>().PlaySound("TempWallStart", transform.position, gameObject);
+
         objectRenderer.material = sprite1;
         currentLifeTime = lifeSpan;
         healthBarSlider.maxValue = lifeSpan;
@@ -52,6 +54,7 @@ public class TemporaryWall : MonoBehaviour
 
     private void HealthBarDecrease()
     {
+        
         if (currentLifeTime > 0)
         {
             currentLifeTime -= Time.deltaTime;
@@ -61,6 +64,8 @@ public class TemporaryWall : MonoBehaviour
 
     private void Die()
     {
+
+        FindObjectOfType<AudioManager>().PlaySound("TempWallEnd", transform.position, gameObject);
         Destroy(gameObject);
     }
 }
