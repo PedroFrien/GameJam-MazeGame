@@ -40,11 +40,17 @@ public class FPSController : MonoBehaviour
 
     [SerializeField] private GameObject firstPersonTutorial;
 
-
+    private static FPSController instance;
     // Start is called before the first frame update
 
     void Awake()
     {
+
+        if (instance != null && instance != this) // Check for existing instance
+        {
+            Destroy(gameObject); // Destroy this instance if one already exists
+            return;
+        }
         characterController = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
